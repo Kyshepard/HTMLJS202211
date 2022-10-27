@@ -1,0 +1,20 @@
+html, body{
+   background-color: pink;
+   color: blue; 
+}
+
+h1{
+    margin: auto;
+    border: 10px solid red;
+    padding: 40px;
+    background-color: cornflowerblue;
+    font-family: Arial;
+    text-align: center;
+}
+p{
+    width: 400px;
+    margin: 100px;
+    border: 15px dashed blue;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
