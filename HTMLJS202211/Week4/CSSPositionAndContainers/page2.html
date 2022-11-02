@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week 4 | Layout, Position and Semantic Elements</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div id="container">
+        <!--All of out content will go here-->
+        <header>
+            <h1>Page 2 week 4 Day 1 | CSS position layout lab</h1>
+            <p id="clicks"></p>
+        </header>
+        <nav>
+           
+            <a href="../../index.html" class="btn">Assignment Page</a>
+            <button onclick="updateClicks()">click this button</button>
+        </nav>
+        <section>
+            section
+            <span id="clicks"></span>
+        </section>
+        <article>
+            article
+        </article>
+        <aside>
+            aside
+        </aside>
+        <footer>
+            footer
+        </footer>
+        <script>
+            var clicks=0;
+            
+            function updateClicks(){
+                clicks+=1;
+                document.getElementById("clicks").innerHTML=clicks.toString();
+            }
+        </script>
+    </div>
+</body>
+</html>
