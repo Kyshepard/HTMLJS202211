@@ -1,0 +1,13 @@
+html,body{
+    margin:0;
+    height:100%;
+}
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+canvas{
+    border:1px solid black;
+    background-image:url(images/shapes.png);
+}
