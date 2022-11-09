@@ -5,18 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riddles with JavaScript</title>
+    <link rel="preconnect" href="https://www.dafont.com/">
+    <link rel="preconnect" href="https://www.dafont.com/">
+    <link href="https://www.dafont.com/">
+    <style>
+        @import url('https://www.dafont.com/storm-gust.font');
+        @font-face {
+            font-family: storm;
+            src: url(font/storm_gust\ -\ Shortcut.lnk);
+        }
+        body{
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: orange;
+                font-family: storm;
+                
+        }
+    </style>
 </head>
 <body>
     <ul>
         <li>
         <p> what is black and white read all over </p>
             <br>
-            <p onclick="showAnswer('answer','A newspaper!')" id="answer">answer</p>
+            <p onclick="showAnswer('answer','A newspaper!')">click for answer</p>
+            <span id="answer"></span>
     </li>
     <li>
         <p> what gets bigger the more that is taken away? </p>
             <br>
-            <p onclick="showAnswer('answer2','a hole')" id="answer2">answer</p>
+            <p onclick="showAnswer('answer2','a hole')">click for answer</p>
+            <span id="answer2"></span>
     </li>
 </ul>
 <script src="riddles.js"></script>
