@@ -1,0 +1,24 @@
+body{
+    display:flex;
+    justify-content:center;
+}
+nav{
+    display:flex;
+    justify-content:center;
+}
+#container{
+    box-sizing:border-box;
+    width:1018px;
+    border:1px solid black;
+    padding:7px;
+}
+canvas{
+    border: 1px solid black;
+    box-sizing:border-box;
+}
+a:link, a:visited{
+    display:inline-block;
+    background-color:yellow;
+    padding:10px;
+    margin:20px;
+}
