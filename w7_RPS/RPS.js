@@ -1,4 +1,4 @@
-var canvas = document.getElementById("c")
+var canvas = document.getElementById("canvas")
 var ctx = canvas.getContext("2d")
 
 //use lightsabers instead of rock, paper, scissors
