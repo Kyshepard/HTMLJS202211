@@ -10,19 +10,19 @@ var green = new Image();
 var blue = new Image();
 var hred = new Image();
 var hgreen = new Image();
-var hgreen = new Image();
+var hblue = new Image();
 
-red.src = "images/Red.jpg";
-green.src = "images/Green.jpg";
-blue.src = "images/Blue.jpg";
+red.src = "images/Red.png";
+green.src = "images/Green.png";
+blue.src = "images/Blue.png";
 
 
-hred.src = "images/Red2.jpg";
-hgreen.src = "images/Green2.jpg";
-hblue.src = "images/Blue2.jpg";
+hred.src = "images/Red2.png";
+hgreen.src = "images/Green2.png";
+hblue.src = "images/Blue2.png";
 
 //check to see if i need to add what is below
-hscissors.onload = function(){
+hblue.onload = function(){
     draw()
 }
 
