@@ -64,17 +64,17 @@ ctx.strokeText("Welcome to the RPS Game!", canvas.width/2, 280);
         ctx.textAlign = "center"
         ctx.fillStyle = "pink";
         //player choice
-        ctx.fillText("Player Choice", canvas.width/2,100);
-        ctx.drawImage(red, canvas.width/2 - red.width/2 - 100, 150);
-        ctx.drawImage(green, canvas.width/2 - green.width/2, 150);
-        ctx.drawImage(blue, canvas.width/2 - blue.width/2 + 100, 150);
+        ctx.fillText("Player Choice", canvas.width/2.1,100);
+        ctx.drawImage(red, canvas.width/2 - red.width/2 - 100, 150 , 10, 150);
+        ctx.drawImage(green, canvas.width/2 - green.width/2, 150, 10, 150 );
+        ctx.drawImage(blue, canvas.width/2 - blue.width/2 + 100, 150 , 10, 150);
         //computer choices
-        ctx.fillText("Computer Choice", canvas.width/2,325);
-        ctx.drawImage(cred, canvas.width/2 - 100, 375);
-        ctx.drawImage(cgreen, canvas.width/2 , 375);
-        ctx.drawImage(cblue, canvas.width/2 + 100, 375);
+        ctx.fillText("Computer Choice", canvas.width/2.1,340);
+        ctx.drawImage(cred, canvas.width/2 - red.width/2 - 100, 375, 10, 150);
+        ctx.drawImage(cgreen, canvas.width/2 - green.width/2, 375, 10, 150);
+        ctx.drawImage(cblue, canvas.width/2 -blue.width/2 + 100, 375 , 10, 150);
 
-        ctx.fillText(results, canvas.width/2, 525);
+        ctx.fillText(results, canvas.width/2.1, 565);
         ctx.restore();
     }
 }
