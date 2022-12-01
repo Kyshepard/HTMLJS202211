@@ -50,12 +50,20 @@ function draw(red,green,blue, cred, cgreen, cblue){
 //drawing the fonts
 ctx.font = "40px Arial";
 ctx.fillStyle = "blue";
-ctx.strokeStyle= "grey";
+ctx.strokeStyle= "firebrick";
 ctx.textAlign = "center";
 ctx.fillText("Welcome to the RPS Game!", canvas.width/2, 80);
-ctx.fillText("")
-ctx.fillText("Press Space to Start", canvas.width/2, 520);
 ctx.strokeText("Welcome to the RPS Game!", canvas.width/2, 80);
+ctx.fillText("Lightsaber eddition", canvas.width/2, 120);
+ctx.strokeText("Lightsaber eddition", canvas.width/2, 120);
+ctx.fillText("How to Play",canvas.width/2, 210)
+ctx.fillText("Select any color to choose your lightsaber", canvas.width/2,270)
+ctx.fillText("red beats blue",canvas.width/2,320)
+ctx.fillText("blue beats green",canvas.width/2,370)
+ctx.fillText("green beats red",canvas.width/2,420)
+ctx.fillText("Press Space to Start", canvas.width/2, 520);
+ctx.strokeText("Press Space to Start", canvas.width/2, 520);
+//ctx.strokeText("Welcome to the RPS Game!", canvas.width/2, 80);
     }
     else{
 
@@ -63,7 +71,7 @@ ctx.strokeText("Welcome to the RPS Game!", canvas.width/2, 80);
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.font = "30px Ariel"
         ctx.textAlign = "center"
-        ctx.fillStyle = "pink";
+        ctx.fillStyle = "green";
         //player choice
         ctx.fillText("Player Choice", canvas.width/2.1,100);
         ctx.drawImage(red, canvas.width/2 - red.width/2 - 100, 150 , 10, 150);
