@@ -50,11 +50,12 @@ function draw(red,green,blue, cred, cgreen, cblue){
 //drawing the fonts
 ctx.font = "40px Arial";
 ctx.fillStyle = "blue";
-ctx.strokeStyle= "yellow";
+ctx.strokeStyle= "grey";
 ctx.textAlign = "center";
-ctx.fillText("Welcome to the RPS Game!", canvas.width/2, 280);
-ctx.fillText("Press Space to Start", canvas.width/2, 320);
-ctx.strokeText("Welcome to the RPS Game!", canvas.width/2, 280);
+ctx.fillText("Welcome to the RPS Game!", canvas.width/2, 80);
+ctx.fillText("")
+ctx.fillText("Press Space to Start", canvas.width/2, 520);
+ctx.strokeText("Welcome to the RPS Game!", canvas.width/2, 80);
     }
     else{
 
