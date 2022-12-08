@@ -55,20 +55,24 @@ function main(){
                 fuel-= speed;
             }
         }
-
+        
         drawStartFinish();
-   drawCar();
+        drawCar();
 
    
-    drawFuelBar();
-    if(carPos + 40 > finish || fuel <=0){
+        drawFuelBar();
+        if(carPos + 40 > finish || fuel <=0){
         drawResults();
     }
+
     }
+    //adding the boundary so car stays on screen
+    if(carPos > canvas.width - 90 || fuel <= 0)
+    {    speed *= 0;
+        drawResults();
+    }
+    //console.log(speed);
 
-    
-
-    
     timer = requestAnimationFrame(main);
 }
 
@@ -85,6 +89,7 @@ function drawCar(){
  //ctx.fillStyle = "red";
 // ctx.fillRect(carPos,canvas.height/2, 50, 20);
 ctx.drawImage(carSprite, carPos, canvas.height/2, carWidth, 35);
+
 }
 
 function drawFuelBar(){
