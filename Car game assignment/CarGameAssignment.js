@@ -22,6 +22,9 @@ var frames = fps;
 var carSprite = new Image();
 carSprite.src= "images/CoolCar.png"
 
+//start and finish sprite
+var SF = new Image();
+SF.src = "images/SF.png"
 //add some event listeners
 document.addEventListener("keydown", keyPressDown);
 
@@ -39,7 +42,7 @@ function keyPressDown(e){
 function main(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     if(gameOver){
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.font = "30px Serif";
         ctx.textAlign = "center";
         ctx.fillText("Press Space to Start", canvas.width/2, canvas.height/2)
@@ -77,11 +80,13 @@ function main(){
 }
 
 function drawStartFinish(){
-    ctx.fillStyle = "black";
+    //ctx.fillStyle = "black";
     //startline
-    ctx.fillRect(start, 50, 10, 500);
+    ctx.drawImage(SF,start, 50, 10, 500)
+    //ctx.fillRect(start, 50, 10, 500);
     //finishline
-    ctx.fillRect(finish, 50, 10, 500);
+    ctx.drawImage(SF,finish, 50, 10, 500)
+    //ctx.fillRect(finish, 50, 10, 500);
 }
 
 function drawCar(){
@@ -106,12 +111,12 @@ function drawFuelBar(){
 
 function drawResults(){
     if(carPos + carWidth > finish){
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.font = "25px Serif";
         ctx.textAlign = "center";
         ctx.fillText("You made it to the finish...You  Win!",canvas.width/2,canvas.height/2);
     }else{
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.font = "25px Serif";
         ctx.textAlign = "center";
         ctx.fillText("You ran out of fuel...You  Lose!",canvas.width/2,canvas.height/2);
@@ -129,7 +134,7 @@ function runStartTimer(){
     }
 }
 function drawStartTimer(){
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.font = "25px Serif";
     ctx.textAlign = "center";
     ctx.fillText(seconds,canvas.width/2,canvas.height/2);
