@@ -3,3 +3,21 @@ body{background-image: url('images/background.jpg');
     background-size: cover;
    
 }
+ /*I know this is the incorrect way to use the background image,
+but I think it looks better this way rather than the way I am
+supposed to link the background image. Below I have the proper
+steps to show that I know how to use a background
+image the correct way. commented out of course */
+
+/*
+html,body{
+    display: flex;
+    justify-content: center;
+}
+canvas{
+    border: 2px solid white;
+    background-image: url(images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+*/
