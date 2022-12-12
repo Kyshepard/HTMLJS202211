@@ -147,7 +147,7 @@ function Asteroid() {
     this.drawAsteroid = function () {
         ctx.save();
         ctx.beginPath();
-        ctx.drawImage(pixelAsteroid, 0, 0)
+        //ctx.drawImage(pixelAsteroid, 0, 0)
         ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.closePath();
