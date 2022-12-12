@@ -17,11 +17,19 @@ var ship = new PlayerShip();
 
 //ship image
 var pixelShip = new Image();
-pixelShip.src = "Images/shipwoboost.png"
+pixelShip.src = "Images/Shipwoboost.png"
 
 //ship image with boost
 var pixelShipB = new Image();
-pixelShipB = "Images/shipwboost.png"
+pixelShipB.src = "Images/Shipwboost.png"
+
+//asteroid image
+var pixelAsteroid = new Image();
+pixelAsteroid.src = "Images/GoldenAsteroid.png"
+
+pixelShipB.onload = function(){
+    main();
+}
 
 //create keyboard event handlers
 document.addEventListener("keydown", pressKeyDown);
@@ -130,8 +138,8 @@ function pressKeyUp(e) {
 function Asteroid() {
     //properties to draw the asteroid
     this.radius = randomRange(15, 2);
-    this.x = randomRange(canvas.width - this.radius, this.radius);
-    this.y = randomRange(canvas.height - this.radius, this.radius) - canvas.height;
+    this.x = randomRange(canvas.width - this.radius, this.radius) + canvas.width;
+    this.y = randomRange(canvas.height - this.radius, this.radius);// - canvas.height;
     this.vy = randomRange(10, 5);
     this.color = "white";
 
@@ -139,21 +147,20 @@ function Asteroid() {
     this.drawAsteroid = function () {
         ctx.save();
         ctx.beginPath();
+        ctx.drawImage(pixelAsteroid, 0, 0)
         ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.fill();
-
         ctx.restore();
-
     }
 }
 
 function PlayerShip() {
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
-    this.width = 20;
-    this.height = 20;
+    this.width = 40;
+    this.height = 40;
     this.up = false;
     this.down = false;
     this.left = false;
@@ -167,39 +174,41 @@ function PlayerShip() {
         ctx.translate(this.x, this.y);
 
         //draw the thruster
-        if(this.up || this.left || this.right){
-            ctx.save();
-            if(this.flameLength == 30){
-                this.flameLength = 20;
-                ctx.fillStyle = "yellow";
-            }else{
-                this.flameLenght = 30;
-                ctx.fillStyle = "orange";
-            }
+        if(this.up || this.right || this.down){
+           // ctx.save();
+            // if(this.flameLength == 30){
+            //     this.flameLength = 20;
+            //     ctx.fillStyle = "yellow";
+            // }else{
+            //     this.flameLenght = 30;
+            //     ctx.fillStyle = "orange";
+            // }
             //draw flame
-            ctx.beginPath();
-            //ctx.drawImage(pixelShipB,0,0)
-            ctx.moveTo(0, this.flameLength);
-            ctx.lineTo(5, 5);
-            ctx.lineTo(-5, 5);
-            ctx.lineTo(0, this.flameLength);
-            ctx.closePath();
-            ctx.fill();
-            ctx.restore();
-        }
+            // ctx.beginPath();
+            ctx.drawImage(pixelShipB,0,0, this.width, this.height)
+            // ctx.moveTo(0, this.flameLength);
+            // ctx.lineTo(5, 5);
+            // ctx.lineTo(-5, 5);
+            // ctx.lineTo(0, this.flameLength);
+            // ctx.closePath();
+            // ctx.fill();
+           // ctx.restore();
+        
+        }else{
 
         //draw the ship
        
        
         //ctx.fillStyle = "red";
-        ctx.beginPath();
-        ctx.drawImage(pixelShip, 0, 0)
+      //  ctx.beginPath();
+        ctx.drawImage(pixelShip, 0, 0, this.width, this.height)
        /* ctx.moveTo(0, -10);
         ctx.lineTo(10, 10);
         ctx.lineTo(-10, 10);
         ctx.lineTo(0, -10);*/
-        ctx.closePath();
-        ctx.fill();
+      //  ctx.closePath();
+       // ctx.fill();
+    }
         ctx.restore();
 
     }
@@ -276,17 +285,20 @@ gameState[1] = function(){
 
     //vertical movement
     if (ship.up) {
-        ship.vy = -10;
-    } else {
-        ship.vy = 3;
+        ship.vy = -7;
+    } else if (ship.down){
+        ship.vy = 7
+    } 
+    else {
+        ship.vy = 0;
     }
 
 
     //horizontal movement
     if (ship.left) {
-        ship.vx = -3;
+        ship.vx = -7;
     } else if (ship.right) {
-        ship.vx = 3;
+        ship.vx = 7;
     } else {
         ship.vx = 0;
     }
@@ -306,11 +318,11 @@ gameState[1] = function(){
             return;
         }
 
-        if (asteroids[i].y > canvas.height + asteroids[i].radius) {
-            asteroids[i].y = randomRange(canvas.height - asteroids[i].radius, asteroids[i].radius) - canvas.height;
-            asteroids[i].x = randomRange(canvas.width - asteroids[i].radius, asteroids[i].radius);
+        if (asteroids[i].x < asteroids[i].radius) {
+            asteroids[i].y = randomRange(canvas.height - asteroids[i].radius, asteroids[i].radius);
+            asteroids[i].x = randomRange(canvas.width - asteroids[i].radius, asteroids[i].radius) + canvas.width;
         }
-        asteroids[i].y += asteroids[i].vy;
+        asteroids[i].x -= asteroids[i].vy;
         asteroids[i].drawAsteroid();
     }
     //draw the ship

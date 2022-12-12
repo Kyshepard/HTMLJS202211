@@ -6,8 +6,17 @@ body{
     
 }
 canvas{
-    border: 1px solid white;
+    border: 2px solid white;
+    
 }
 #container{
     background-color: black;
+}
+header{
+    color: white;
+    text-align: center;
+}
+footer{
+    color:white;
+    text-align: center;
 }
