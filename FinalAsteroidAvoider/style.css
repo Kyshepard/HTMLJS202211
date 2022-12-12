@@ -1,0 +1,13 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-image: url(images/Space2.jpg);
+    background-repeat: no-repeat;
+    
+}
+canvas{
+    border: 1px solid white;
+}
+#container{
+    background-color: black;
+}
