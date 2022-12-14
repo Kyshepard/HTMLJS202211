@@ -31,6 +31,14 @@ pixelShipB.onload = function(){
     main();
 }
 
+//start menu
+var startMenu = new Image();
+startMenu.src = "Images/startmenu.png"
+
+//power up
+var powerUp = new Image();
+powerUp.src = "Images/powerup.png"
+
 //create keyboard event handlers
 document.addEventListener("keydown", pressKeyDown);
 document.addEventListener("keyup", pressKeyUp);
@@ -264,12 +272,13 @@ function main() {
 gameState[0] = function(){
     //code for menu
     ctx.save();
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center"
-    ctx.fillText("Asteroid Avoider", canvas.width/2, canvas.height/2 - 30);
-    ctx.font = "15px Arial";
-    ctx.fillText("Press Space to start", canvas.width/2, canvas.height/2 + 20);
+    ctx.drawImage(startMenu,this.width,this.height)
+    //ctx.font = "30px Arial";
+    //ctx.fillStyle = "white";
+    //ctx.textAlign = "center"
+   // ctx.fillText("Asteroid Avoider", canvas.width/2, canvas.height/2 - 30);
+    //ctx.font = "15px Arial";
+    //ctx.fillText("Press Space to start", canvas.width/2, canvas.height/2 + 20);
     ctx.restore();
 }
 
