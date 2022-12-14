@@ -27,9 +27,6 @@ pixelShipB.src = "Images/Shipwboost.png"
 var pixelAsteroid = new Image();
 pixelAsteroid.src = "Images/GoldenAsteroid.png"
 
-pixelShipB.onload = function(){
-    main();
-}
 
 //start and end menu
 var startMenu = new Image();
@@ -38,9 +35,15 @@ startMenu.src = "Images/startmenu.png"
 var endMenu = new Image();
 endMenu.src = "Images/endmenu.png"
 
+
+startMenu.onload = function(){
+    main();
+}
 //power up
-var powerUp = new Image();
-powerUp.src = "Images/powerup.png"
+/*var powerUpStar = new Image();
+powerUpStar.src = "Images/powerup.png"
+numPowerUp = 5
+var powerUps = []*/
 
 //create keyboard event handlers
 document.addEventListener("keydown", pressKeyDown);
@@ -148,7 +151,7 @@ function pressKeyUp(e) {
 //Asteroid  Class
 function Asteroid() {
     //properties to draw the asteroid
-    this.radius = randomRange(15, 2);
+    this.radius = randomRange(15, 5);
     this.x = randomRange(canvas.width - this.radius, this.radius) + canvas.width;
     this.y = randomRange(canvas.height - this.radius, this.radius);// - canvas.height;
     this.vy = randomRange(10, 5);
@@ -158,14 +161,25 @@ function Asteroid() {
     this.drawAsteroid = function () {
         ctx.save();
         ctx.beginPath();
-        //ctx.drawImage(pixelAsteroid, 0, 0)
-        ctx.fillStyle = this.color;
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
+        
+        //ctx.fillStyle = this.color;
+        //ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        //ctx.closePath();
+        
+        //ctx.fill();
+        ctx.drawImage(pixelAsteroid,this.x-this.radius, this.y-this.radius, this.radius*2, this.radius*2)
         ctx.restore();
     }
 }
+
+/*function PowerUps(){
+    //properties to draw Power Up Star
+    this.radius = randomRange(15,2)
+    this.vy = randomRange(10,5)
+    ctx.save();
+    ctx.drawImage(powerUpStar);
+    ctx.restore();
+}*/
 
 function PlayerShip() {
     this.x = canvas.width / 2;
@@ -196,7 +210,7 @@ function PlayerShip() {
             // }
             //draw flame
             // ctx.beginPath();
-            ctx.drawImage(pixelShipB,0,0, this.width, this.height)
+            ctx.drawImage(pixelShipB,-this.width/2,-this.height/2, this.width, this.height)
             // ctx.moveTo(0, this.flameLength);
             // ctx.lineTo(5, 5);
             // ctx.lineTo(-5, 5);
@@ -212,7 +226,7 @@ function PlayerShip() {
        
         //ctx.fillStyle = "red";
       //  ctx.beginPath();
-        ctx.drawImage(pixelShip, 0, 0, this.width, this.height)
+        ctx.drawImage(pixelShip, -this.width/2, -this.height/2, this.width, this.height)
        /* ctx.moveTo(0, -10);
         ctx.lineTo(10, 10);
         ctx.lineTo(-10, 10);
@@ -275,7 +289,7 @@ function main() {
 gameState[0] = function(){
     //code for menu
     ctx.save();
-    ctx.drawImage(startMenu,this.width,this.height)
+    ctx.drawImage(startMenu,0,0,canvas.width,canvas.height)
     //ctx.font = "30px Arial";
     //ctx.fillStyle = "white";
     //ctx.textAlign = "center"
@@ -345,6 +359,21 @@ gameState[1] = function(){
         asteroids[i].x -= asteroids[i].vy;
         asteroids[i].drawAsteroid();
     }
+
+    /*for (var i = 0; i < PowerUps.length; i++){
+        var dX = ship.x - powerUp[i].x;
+        var dY = ship.y - powerUp[i].y;
+        var distance = Math.sqrt((dX*dX) + (dY * dY));
+
+        //detecting power up collision
+        if (detectCollision(distance/ .6, (pixelShip.height/2 + powerUp[i].radius))){
+
+        }*/
+    
+
+
+
+
     //draw the ship
     ship.moveShip()
     ship.drawShip()
@@ -354,11 +383,16 @@ gameState[1] = function(){
         asteroids.push(new Asteroid());
     }
 
+    //make power up star
+    /*while(powerUps.length < numPowerUp){
+        powerUp.push(new PowerUps());
+    }*/
 
 }
 
 //game over state
 gameState[2] =  function(){
+    ctx.drawImage(endMenu,0,0,canvas.width,canvas.height)
     if (score > highScore){
         highScore = score;
         ctx.save();
@@ -382,6 +416,8 @@ gameState[2] =  function(){
     ctx.font = "15px Arial";
     ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20);
     ctx.restore();
+    //code for background image
+    ctx.drawImage(endMenu);
 }
 }
 
