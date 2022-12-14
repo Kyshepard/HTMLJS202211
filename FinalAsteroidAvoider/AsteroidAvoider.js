@@ -31,9 +31,12 @@ pixelShipB.onload = function(){
     main();
 }
 
-//start menu
+//start and end menu
 var startMenu = new Image();
 startMenu.src = "Images/startmenu.png"
+
+var endMenu = new Image();
+endMenu.src = "Images/endmenu.png"
 
 //power up
 var powerUp = new Image();
@@ -318,7 +321,15 @@ gameState[1] = function(){
         var distance = Math.sqrt((dX * dX) + (dY * dY));
 
         //collision detection happens here
-        if (detectCollision(distance, (ship.height / 2 + asteroids[i].radius))) {
+        if (detectCollision(distance/ .6, (pixelShip.height/2 + asteroids[i].radius))) {
+            //console.log("Hit Asteroid");
+            //alert
+            gameOver = true;
+            currentState = 2;
+            main();
+            return;
+        }
+        if (detectCollision(distance/ .6, (pixelShipB.height/2 + asteroids[i].radius))) {
             //console.log("Hit Asteroid");
             //alert
             gameOver = true;
