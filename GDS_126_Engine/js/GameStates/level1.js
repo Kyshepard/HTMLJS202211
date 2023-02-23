@@ -236,11 +236,26 @@ gameStates[`level1`] = function()
 	wiz.x -= offset.x;
 	level.x -= offset.x;
 
+	//makes canvas movable Part: 1
+	//wiz.y -= offset.y;
+	//level.y -= offset.y;
+
 	//moves repeating background
 	rbg.x = level.x*.5;
 
+	//makes canvas movable Part: 2
+	//rbg.x -= offset.x*.5;
+	//rbg.y -= offset.y*.5;
+
+	
+
 	//moves the middleground
-	bg.x = level.x*.75;
+	bg.x = level.x*.75
+
+	//makes canvas movable Part: 3
+	//bg.x -= offset.x*.75;
+	//bg.y -= offset.y*.75;
+
 
 	//moves the clouds
 	//clouds.x = level.x*.25;
