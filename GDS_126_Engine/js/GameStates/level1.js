@@ -6,7 +6,7 @@ var friction = {x:.85,y:.97}
 var stage = new GameObject({width:canvas.width, height:canvas.height});
 
 //Avatar
-var wiz = new GameObject({width:128, height:128, spriteData:playerData}).makeSprite(playerData)
+var wiz = new GameObject({width:133*.33, height:512*.33, spriteData:playerData}).makeSprite(playerData)
 wiz.force=1
 
 //The ground
@@ -114,7 +114,7 @@ gameStates[`level1`] = function()
 
 	if(keys[`D`]  )
 	{
-		wiz.dir=1;
+		wiz.dir=-1;
 		if(wiz.currentState != `crouch`) 
 		{
 			if(wiz.canJump)wiz.changeState(`walk`)
@@ -125,7 +125,7 @@ gameStates[`level1`] = function()
 	}
 	if(keys[`A`] )
 	{
-		wiz.dir=-1;
+		wiz.dir=1;
 		if(wiz.currentState != `crouch` ) 
 		{
 			if(wiz.canJump)wiz.changeState(`walk`)
