@@ -114,7 +114,7 @@ gameStates[`level1`] = function()
 
 	if(keys[`D`]  )
 	{
-		wiz.dir=-1;
+		wiz.dir=1;
 		if(wiz.currentState != `crouch`) 
 		{
 			if(wiz.canJump)wiz.changeState(`walk`)
@@ -125,7 +125,7 @@ gameStates[`level1`] = function()
 	}
 	if(keys[`A`] )
 	{
-		wiz.dir=1;
+		wiz.dir=-1;
 		if(wiz.currentState != `crouch` ) 
 		{
 			if(wiz.canJump)wiz.changeState(`walk`)
