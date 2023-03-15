@@ -93,3 +93,29 @@ var playerData ={
 	}
 		
 }
+
+var iceBallData = {
+	info:{
+		src:`images/wizard.png`
+	},
+	states:{
+		//The idle animation 
+    	idle:
+	{
+	fps:15,
+	cycle:false,
+	//width:300,
+	frames:
+	[
+		{width:140, height:141, startX:882, startY:0},
+		//{width:128, height:128, startX:1024, startY:0},
+		//{width:128, height:128, startX:1024, startY:0},
+		//{width:128, height:128, startX:1152, startY:0},
+		//{width:128, height:128, startX:1152, startY:0},
+		//{width:128, height:128, startX:1152, startY:0},
+		//{width:128, height:128, startX:1152, startY:0}
+		
+		]
+	}
+}
+}
