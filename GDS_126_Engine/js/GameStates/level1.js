@@ -14,7 +14,8 @@ var ground = new GameObject({width:canvas.width*10, x:canvas.width*10/2,height:6
 ground.img.src=`images/ground.png`
 
 //A platform
-var plat = new GameObject({width:256, height:64,y:canvas.height-200, color:"green"})
+var plat = new GameObject({width:300, height:150,y:canvas.height-140, color:"green"})
+plat.img.src= `images/Platform.png`
 
 //A level object when it is moved other objects move with it.
 var level = new GameObject({x:0,y:0});
@@ -42,7 +43,7 @@ g1.add([ground,leftBorder, caveHit.grid])
 
 //Used to draw the rectangles
 var rects = new Group();
-rects.add([ground,plat])
+rects.add([ground,/*plat*/])
 
 //used to render the sprites
 var sprites = new Group();
@@ -271,7 +272,7 @@ gameStates[`level1`] = function()
 	var groundPattern = context.createPattern(ground.img, `repeat`);
 	//Applies pattern to ground and platform
 	ground.color = groundPattern
-	plat.color = groundPattern
+	//plat.color = groundPattern
 
 	//Sets up pattern for the sky
 	var skyPattern = context.createPattern(sky.img, `repeat`);
@@ -304,6 +305,7 @@ gameStates[`level1`] = function()
 	//Renders sprites group
 	sprites.play().render(`drawSprite`);
 
+	plat.drawStaticImage({y:canvas.height - 190});
 	//renders player
 	wiz.play(function(){return}).drawSprite()
 	
