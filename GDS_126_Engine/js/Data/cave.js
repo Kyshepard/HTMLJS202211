@@ -3,7 +3,7 @@ var caveData ={
 	info:{
 		layout:[
 			[x,x,x,x,x,x,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0],
-			[x,x,x,x,x,6,6,4,4,5,3,4,4,4,4,5,x,4,4,4,4,4,4,4,4,5,4,4,4,2,5,5,4,4,x],
+			[x,x,x,x,x,6,6,x,x,5,3,x,x,x,x,5,x,x,x,x,x,x,x,x,x,5,x,x,x,2,5,5,x,x,x],
 			[x,x,x,x,6,6,6,x,x,x,2,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,2,x,x,x,x,x],
 			[x,x,x,6,6,6,6,x,x,x,2,x,x,x,x,x,3,x,x,x,x,x,x,x,x,x,x,x,x,2,x,x,x,x,x],
 			[x,x,6,6,6,6,6,x,x,x,2,x,x,x,x,x,2,x,x,x,x,x,x,x,x,x,x,x,x,2,x,x,x,x,x],
@@ -86,8 +86,8 @@ var caveData ={
 		var caveHitData={
 			info:{
 				layout:[
-					[x,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,4],
-					[x,8,1,8,1,1,8,1,1,1,1,1,1,8,8,1,8,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4],
+					[x,x,x,x,x,x,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,4],
+					[x,x,x,x,x,x,x,x,x,5,x,x,x,x,x,5,x,x,x,x,x,x,x,x,x,5,x,x,x,x,5,5,x,x,4],
 					[x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,4],
 					[x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,4],
 					[x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,4],

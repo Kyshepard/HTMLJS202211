@@ -120,6 +120,7 @@ gameStates[`level1`] = function()
 		{
 			if(wiz.canJump)wiz.changeState(`walk`)
 			wiz.vx += wiz.force
+			wiz.width = 133*.33;
 			
 		}
 		
@@ -131,6 +132,7 @@ gameStates[`level1`] = function()
 		{
 			if(wiz.canJump)wiz.changeState(`walk`)
 			wiz.vx += -wiz.force
+			wiz.width = 133*.33;
 		}
 		
 	}
@@ -155,6 +157,7 @@ gameStates[`level1`] = function()
 	{
 		if(canShoot)
 		{
+			wiz.width = 100;
 			wiz.changeState(`attack`)
 			shotTimer = shotDelay
 			//console.log(`Boom`)
@@ -164,7 +167,7 @@ gameStates[`level1`] = function()
 			bullets[currentBullet].x = wiz.x-level.x + (wiz.dir * 96) ;
 			bullets[currentBullet].y = wiz.y + 20;
 			bullets[currentBullet].dir = wiz.dir;
-			
+		
 			sounds.play(`shoot`,0)
 
 			currentBullet++;
@@ -177,6 +180,7 @@ gameStates[`level1`] = function()
 	}
 	else
 	{
+		wiz.width = 133*.33;
 		shotTimer=0
 	}
 	
