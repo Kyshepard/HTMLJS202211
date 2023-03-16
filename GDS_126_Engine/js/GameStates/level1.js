@@ -97,6 +97,7 @@ for(let i=0; i<100; i++)
 
 gameStates[`level1`] = function()
 {
+	wiz.width = 133*.33;
 	if(!keys[`W`] && !keys[`S`] && !keys[`D`] && !keys[`A`] && !keys[` `] && canShoot && wiz.canJump)
 	{
 		wiz.changeState(`idle`)
@@ -105,6 +106,7 @@ gameStates[`level1`] = function()
 	
 	if(keys[`S`])
 	{
+		wiz.width = 133*.33;
 		wiz.top={x:0,y:0};
 		wiz.changeState(`crouch`)
 	}
@@ -115,6 +117,7 @@ gameStates[`level1`] = function()
 
 	if(keys[`D`]  )
 	{
+		wiz.width = 90;
 		wiz.dir=1;
 		if(wiz.currentState != `crouch`) 
 		{
@@ -127,6 +130,7 @@ gameStates[`level1`] = function()
 	}
 	if(keys[`A`] )
 	{
+		wiz.width = 70;
 		wiz.dir=-1;
 		if(wiz.currentState != `crouch` ) 
 		{
@@ -138,6 +142,7 @@ gameStates[`level1`] = function()
 	}
 	if(keys[`W`] && wiz.canJump )
 	{
+		wiz.width = 70;
 		wiz.canJump = false;
 		wiz.vy = wiz.jumpHeight;
 		wiz.changeState(`jump`)
@@ -155,17 +160,19 @@ gameStates[`level1`] = function()
 
 	if(keys[` `] )
 	{
+		wiz.width = 90;
 		if(canShoot)
 		{
-			wiz.width = 100;
+			
+			wiz.width = 90;
 			wiz.changeState(`attack`)
 			shotTimer = shotDelay
 			//console.log(`Boom`)
 
 			bullets[currentBullet].vx = 5*wiz.dir;
 			bullets[currentBullet].world = level;
-			bullets[currentBullet].x = wiz.x-level.x + (wiz.dir * 96) ;
-			bullets[currentBullet].y = wiz.y + 20;
+			bullets[currentBullet].x = wiz.x-level.x + (wiz.dir * 55) ;
+			bullets[currentBullet].y = wiz.y - 40;
 			bullets[currentBullet].dir = wiz.dir;
 		
 			sounds.play(`shoot`,0)
