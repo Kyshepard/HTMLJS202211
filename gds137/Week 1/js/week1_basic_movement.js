@@ -12,8 +12,8 @@ var player;
 	context = canvas.getContext("2d");	
 	
 	//Instantiate the Player
-	player = new Player();
-	player.vx = -30
+	player = new Ball();
+	player.vx = 0
 	
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
@@ -37,6 +37,20 @@ function animate()
 	{
 		player.x = canvas.width - player.width/2
 		player.vx = -player.vx;
+		
+	}
+
+	if(player.y < player.length/2)
+	{
+		player.y = player.length/2
+		player.vy = -player.vy;
+	}
+
+	if(player.y > canvas.length - player.length/2)
+	{
+		player.y = canvas.length -player.length/2
+		player.vy = -player.vx;
+		
 	}
 	
 	//Update the Screen
