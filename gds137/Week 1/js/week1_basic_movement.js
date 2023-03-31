@@ -13,7 +13,8 @@ var player;
 	
 	//Instantiate the Player
 	player = new Ball();
-	player.vx = 2
+	player.vx = 5
+	player.vy = 5
 	
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
@@ -40,16 +41,16 @@ function animate()
 		
 	}
 
-	if(player.y < player.length/2)
+	if(player.y < player.height/2)
 	{
-		player.y = player.length/2
+		player.y = player.height/2
 		player.vy = -player.vy;
 	}
 
-	if(player.y > canvas.length - player.length/2)
+	if(player.y > canvas.height - player.height/2)
 	{
-		player.y = canvas.length -player.length/2
-		player.vy = -player.vx;
+		player.y = canvas.height -player.height/2
+		player.vy = -player.vy;
 		
 	}
 	
