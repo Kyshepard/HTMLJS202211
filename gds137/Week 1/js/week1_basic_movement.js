@@ -32,12 +32,14 @@ function animate()
 	{
 		player.x = player.width/2
 		player.vx = -player.vx;
+		player.color = "#FFFF00"
 	}
 
 	if(player.x > canvas.width - player.width/2)
 	{
 		player.x = canvas.width - player.width/2
 		player.vx = -player.vx;
+		player.color = "#FFFF00"
 		
 	}
 
@@ -45,14 +47,17 @@ function animate()
 	{
 		player.y = player.height/2
 		player.vy = -player.vy;
+		player.color = "#ff0000"
 	}
 
 	if(player.y > canvas.height - player.height/2)
 	{
 		player.y = canvas.height -player.height/2
 		player.vy = -player.vy;
-		
+		player.color = "#ff0000"
 	}
+
+	
 	
 	//Update the Screen
 	player.draw();
