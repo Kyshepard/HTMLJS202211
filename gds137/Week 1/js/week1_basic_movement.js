@@ -13,7 +13,7 @@ var player;
 	
 	//Instantiate the Player
 	player = new Ball();
-	player.vx = 0
+	player.vx = 2
 	
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
