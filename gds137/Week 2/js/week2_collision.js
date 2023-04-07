@@ -78,7 +78,7 @@ function animate()
 	//Impede movement
 	if(rBlock2.hitTestObject(player))
 	{
-		player.x = prevX - rBlock2.wdith/2 - player.width/2;
+		player.x = prevX - rBlock2.wdith - player.width/2;
 		console.log("colliding");
 	}
 	/*else
@@ -93,5 +93,7 @@ function animate()
 	rBlock1.drawRect();
 	rBlock2.drawRect();
 	player.drawCircle();
+	//Collision
+	
 }
 

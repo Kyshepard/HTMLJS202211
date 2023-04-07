@@ -37,7 +37,21 @@ function animate()
 		console.log("Moving Left");
 		player1.y += 2;
 	}
-	
+
+	if(player1.y < player1.height/2)
+	{
+		player1.y = player1.height/2
+		player1.vy = -player1.vy;
+		
+	}
+
+	if(player1.y > canvas.height - player1.height/2)
+	{
+		player1.y = canvas.height -player1.height/2
+		player1.vy = -player1.vy;
+		
+	}
+
 	//Update the Screen
 	player1.drawRect();
 }
