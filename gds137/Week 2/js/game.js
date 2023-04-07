@@ -64,13 +64,14 @@ ball.move();
 	}
 
 	//Collision for the ball
-//if(ball.x < ball.width/2)
-//{
+if(ball.x < ball.width/2)
+{
 	
-	//ball.x = ball.width/2
-	//ball.vx = -ball.vx;
-	//ball.color = "#FFFF00"
-//}
+	ball = new GameObject();
+	ball.width = 32;
+	ball.vx = -5;
+	ball.vy = 0;
+}
 
 if(ball.x > canvas.width - ball.width/2)
 {
