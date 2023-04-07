@@ -39,12 +39,12 @@ ball.move();
 	if(w)
 	{
 		console.log("Moving up");
-		player1.y += -2;
+		player1.y += -8;
 	}
 	if(s)
 	{
 		console.log("Moving down");
-		player1.y += 2;
+		player1.y += 8;
 	}
 
 	//collision for the paddle
