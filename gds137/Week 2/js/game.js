@@ -19,8 +19,9 @@ var ball
 
 	//Instantiate the ball
 	ball = new GameObject();
-	ball.vx = 5;
-	ball.vy = 5;
+	ball.width = 32;
+	ball.vx = -5;
+	ball.vy = 0;
 	
 	
 	
@@ -63,34 +64,56 @@ ball.move();
 	}
 
 	//Collision for the ball
-if(ball.x < ball.width/2)
-{
-	ball.x = ball.width/2
-	ball.vx = -ball.vx;
-	ball.color = "#FFFF00"
-}
+//if(ball.x < ball.width/2)
+//{
+	
+	//ball.x = ball.width/2
+	//ball.vx = -ball.vx;
+	//ball.color = "#FFFF00"
+//}
 
 if(ball.x > canvas.width - ball.width/2)
 {
+	
 	ball.x = canvas.width - ball.width/2
 	ball.vx = -ball.vx;
 	ball.color = "#FFFF00"
 	
 }
 
-if(ball.y < ball.height/2)
+if(ball.y < ball.width/2)
 {
-	ball.y = ball.height/2
+	ball.y = ball.width/2
 	ball.vy = -ball.vy;
 	ball.color = "#ff0000"
 }
 
-if(ball.y > canvas.height - ball.height/2)
+if(ball.y > canvas.height - ball.width/2)
 {
-	ball.y = canvas.height -ball.height/2
+	ball.y = canvas.height -ball.width/2
 	ball.vy = -ball.vy;
 	ball.color = "#ff0000"
 }
+
+//collisions for ball hiting paddle
+if(ball.hitTestObject(player1))
+	{
+		ball.x = player1.x + player1.width/2 + ball.width/2
+		ball.vx = -ball.vx
+
+		if(ball.y > player1.y /2)
+		{
+			
+			ball.vy = -2
+		}
+		if (ball.y < player1.y/2)
+		{
+			
+			ball.vy = 2
+		}
+		
+	}
+	
 
 	//Update the Screen
 	player1.drawRect();
