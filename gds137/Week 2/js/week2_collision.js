@@ -35,16 +35,16 @@ function animate()
 	
 	
 	//Move the Player to the right
-	if(d)
+	if(w)
 	{
 		//console.log("Moving Right");
-		player.x += 2;
+		player.y += 2;
 	}
 	
-	if(a)
+	if(s)
 	{
 		//console.log("Moving Right");
-		player.x += -2;
+		player.y += -2;
 	}
 	
 	

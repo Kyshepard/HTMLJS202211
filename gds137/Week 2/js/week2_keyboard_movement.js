@@ -5,15 +5,18 @@ var context;
 var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
-var player;
+var player1;
 
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 	
 	//Instantiate the Player
-	player = new GameObject();
-
+	player1 = new GameObject();
+	
+	player1.width = 10;
+	player1.x = 0 + player1.width/2;
+	
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
 
@@ -24,18 +27,18 @@ function animate()
 	
 	
 	//Move the Player to the right
-	if(d)
+	if(w)
 	{
-		console.log("Moving Right");
-		player.x += 2;
+		console.log("Moving up");
+		player1.y += -2;
 	}
-	if(a)
+	if(s)
 	{
 		console.log("Moving Left");
-		player.x += -2;
+		player1.y += 2;
 	}
 	
 	//Update the Screen
-	player.drawRect();
+	player1.drawRect();
 }
 
