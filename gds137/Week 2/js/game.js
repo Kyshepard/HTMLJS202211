@@ -20,6 +20,7 @@ var ball
 	//Instantiate the ball
 	ball = new GameObject();
 	ball.width = 32;
+	ball.height = ball.width;
 	ball.vx = -5;
 	ball.vy = 0;
 	
@@ -102,15 +103,15 @@ if(ball.hitTestObject(player1))
 		ball.x = player1.x + player1.width/2 + ball.width/2
 		ball.vx = -ball.vx
 
-		if(ball.y > player1.y /2)
+		if(ball.y < player1.y - player1.height /6)
 		{
-			
-			ball.vy = -2
+		
+			ball.vy = -3
 		}
-		if (ball.y < player1.y/2)
+		if (ball.y > player1.y + player1.height/6)
 		{
 			
-			ball.vy = 2
+			ball.vy =  3
 		}
 		
 	}
