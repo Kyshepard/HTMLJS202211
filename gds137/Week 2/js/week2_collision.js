@@ -6,7 +6,7 @@ var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
 var player;
-
+var player2;
 //This is used to stop the player from moving through obstacles.
 var prevX;
 
@@ -17,6 +17,11 @@ var prevX;
 	//Instantiate the Player
 	player = new GameObject();
 	player.x = 100;
+
+	//Instantiate the second player
+	player2 = new GameObject();
+	player.x = 100;
+
 	//player.color = 'blue'
 	
 
@@ -47,6 +52,18 @@ function animate()
 		player.y += -2;
 	}
 	
+	//Move second player
+	if(upArrow)
+	{
+		//console.log("Moving Right");
+		player.y += 2;
+	}
+	
+	if(downArrow)
+	{
+		//console.log("Moving Right");
+		player.y += -2;
+	}
 	
 	//Check Collisions
 	
@@ -88,11 +105,13 @@ function animate()
 	
 	//Update the Screen
 	player.drawCircle();
+	player2.drawCircle();
 	lBlock1.drawCircle();
 	lBlock2.drawCircle();
 	rBlock1.drawRect();
 	rBlock2.drawRect();
 	player.drawCircle();
+	player2.drawCircle();
 	//Collision
 	
 }

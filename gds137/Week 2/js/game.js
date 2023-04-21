@@ -6,7 +6,8 @@ var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
 var player1;
-var ball
+var player2;
+var ball;
 
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
@@ -16,6 +17,11 @@ var ball
 	player1 = new GameObject();
 	player1.width = 10;
 	player1.x = 0 + player1.width/2;
+
+	//Instantiate the second paddle
+	player2 = new GameObject();
+	player2.width = 10;
+	player2.x = 0 + player2.wdith/2;
 
 	//Instantiate the ball
 	ball = new GameObject();
@@ -49,6 +55,18 @@ ball.move();
 		player1.y += 8;
 	}
 
+	//Move the second paddle up and down
+	if(upArrow)
+	{
+		console.log("Moving up");
+		player2.y += -8;
+	}
+	if(downArrow)
+	{
+		console.log("Moving down");
+		player2.y += 8;
+	}
+
 	//collision for the paddle
 	if(player1.y < player1.height/2)
 	{
@@ -63,6 +81,22 @@ ball.move();
 		player1.vy = -player1.vy;
 		
 	}
+
+	//collision for the second paddle
+	if(player2.y < player2.height/2)
+	{
+		player2.y = player2.height/2
+		player2.vy = -player2.vy;
+		
+	}
+
+	if(player2.y > canvas.height - player2.height/2)
+	{
+		player2.y = canvas.height -player2.height/2
+		player2.vy = -player2.vy;
+		
+	}
+
 
 	//Collision for the ball
 if(ball.x < ball.width/2)
@@ -119,5 +153,6 @@ if(ball.hitTestObject(player1))
 
 	//Update the Screen
 	player1.drawRect();
+	player2.drawRect();
 	ball.drawCircle();
 }
