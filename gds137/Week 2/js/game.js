@@ -9,9 +9,13 @@ var player1;
 var player2;
 var ball;
 
+var p1Wins = 0;
+var p2Wins = 0;
+
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
+	
 	
 	//Instantiate the paddle
 	player1 = new GameObject();
@@ -30,8 +34,7 @@ var ball;
 	ball.height = ball.width;
 	ball.vx = -5;
 	ball.vy = 0;
-	
-	
+
 	
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
@@ -103,20 +106,18 @@ ball.move();
 if(ball.x < ball.width/2)
 {
 	
-	ball = new GameObject();
-	ball.width = 32;
+	ball.x = canvas.width/2;
 	ball.vx = -5;
 	ball.vy = 0;
+	p2Wins = p2Wins + 1;
 }
-
-/*if(ball.x > canvas.width - ball.width/2)
+if(ball.x > canvas.width)
 {
-	
-	ball.x = canvas.width - ball.width/2
-	ball.vx = -ball.vx;
-	ball.color = "#FFFF00"
-	
-}*/
+	ball.x = canvas.width/2;
+	ball.vx = 5;
+	ball.vy = 0;
+	p1Wins = p1Wins + 1;
+}
 
 if(ball.y < ball.width/2)
 {
@@ -171,4 +172,7 @@ if(ball.hitTestObject(player1))
 	player1.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
+	context.font = "20px Times"
+	context.fillText("Player 1 "+p1Wins+" | "+p2Wins+" Player 2" , canvas.width/2 - 20, 20)
+	p1Wins.drawRect();
 }
