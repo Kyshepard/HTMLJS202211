@@ -12,6 +12,7 @@ var ball;
 var p1Wins = 0;
 var p2Wins = 0;
 
+var img = document.getElementById("ric");
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
@@ -171,7 +172,8 @@ if(ball.hitTestObject(player1))
 	//Update the Screen
 	player1.drawRect();
 	player2.drawRect();
-	ball.drawCircle();
+	context.drawImage(img,ball.x-ball.width/2,ball.y-ball.height/2,ball.width,ball.height)
+	//ball.drawCircle();
 	context.textAlign = "center";
 	context.font = "30px Times"
 	context.fillText("Player 1 "+p1Wins+" | "+p2Wins+" Player 2" , canvas.width/2, 22)
