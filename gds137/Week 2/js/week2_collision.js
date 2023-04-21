@@ -19,8 +19,8 @@ var prevX;
 	player.x = 100;
 
 	//Instantiate the second player
-	player2 = new GameObject();
-	player.x = 100;
+	//player2 = new GameObject();
+	//player2.x = -100;
 
 	//player.color = 'blue'
 	
@@ -56,13 +56,13 @@ function animate()
 	if(upArrow)
 	{
 		//console.log("Moving Right");
-		player.y += 2;
+		player2.y += 2;
 	}
 	
 	if(downArrow)
 	{
 		//console.log("Moving Right");
-		player.y += -2;
+		player2.y += -2;
 	}
 	
 	//Check Collisions

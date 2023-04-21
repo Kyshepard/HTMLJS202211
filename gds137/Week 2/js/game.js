@@ -21,7 +21,8 @@ var ball;
 	//Instantiate the second paddle
 	player2 = new GameObject();
 	player2.width = 10;
-	player2.x = 0 + player2.wdith/2;
+	player2.x = canvas.width - player2.width/2;
+	player2.color = `blue`
 
 	//Instantiate the ball
 	ball = new GameObject();
@@ -108,14 +109,14 @@ if(ball.x < ball.width/2)
 	ball.vy = 0;
 }
 
-if(ball.x > canvas.width - ball.width/2)
+/*if(ball.x > canvas.width - ball.width/2)
 {
 	
 	ball.x = canvas.width - ball.width/2
 	ball.vx = -ball.vx;
 	ball.color = "#FFFF00"
 	
-}
+}*/
 
 if(ball.y < ball.width/2)
 {
@@ -150,6 +151,21 @@ if(ball.hitTestObject(player1))
 		
 	}
 	
+	if(ball.hitTestObject(player2))
+	{
+		//ball.x = player2.x - player2.width*2 + ball.width/2
+		ball.vx = -ball.vx
+		if(ball.y < player2.y - player2.height /6)
+		{
+		
+			ball.vy = -3
+		}
+		if (ball.y > player2.y + player2.height/6)
+		{
+			
+			ball.vy =  3
+		}
+	}
 
 	//Update the Screen
 	player1.drawRect();
