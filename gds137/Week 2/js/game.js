@@ -172,7 +172,18 @@ if(ball.hitTestObject(player1))
 	player1.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
-	context.font = "20px Times"
-	context.fillText("Player 1 "+p1Wins+" | "+p2Wins+" Player 2" , canvas.width/2 - 20, 20)
-	p1Wins.drawRect();
+	context.textAlign = "center";
+	context.font = "30px Times"
+	context.fillText("Player 1 "+p1Wins+" | "+p2Wins+" Player 2" , canvas.width/2, 22)
+	
+	//drawing the net
+	context.save();
+	context.strokeStyle = 'pink';
+	context.beginPath();
+	context.moveTo(canvas.width/2, 0);
+	context.lineTo(canvas.width/2, canvas.height);
+	context.closePath();
+	context.lineWidth = 20;
+	context.stroke();
+	context.restore();
 }
