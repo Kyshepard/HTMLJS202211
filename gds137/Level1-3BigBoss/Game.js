@@ -94,18 +94,18 @@ ball.move();
 if(ball.x < canvas.width/2 - 500 + ball.width/2)
 {
 	ball.x = ball.width/2;
-	ball.vx = -ball.vx * .67;
+	ball.vx = -ball.vy * .67;
 }
 if(ball.x > canvas.width - ball.width/2)
 {
 	ball.x = canvas.width - ball.width/2;
-	ball.vx = - ball.vx * .67;
+	ball.vx = -ball.vy * .67;
 }
 
 if(ball.y < ball.width/2)
 {
 	ball.y = ball.width/2
-	ball.vy = -ball.vy * .67;
+	ball.vy = -ball.vy/ .67;
 }
 
 if(ball.y > canvas.height - ball.width/2)
@@ -119,28 +119,35 @@ if(ball.y > canvas.height - ball.width/2)
 if(ball.hitTestObject(paddle))
 	{
 		ball.y = paddle.y - paddle.height/2 - ball.height/2
-		ball.vy = -ball.vy;
+		ball.vy = -35;
 		score = score + 1;
+		console.log("center hit")
+		
+		
+		//inner left
+		if(ball.x < paddle.x - paddle.width/3)
+		{
+			ball.vx = -ball.force
+			console.log("Inner hit");
+		}
+		//inner right
+		if(ball.x > paddle.x + paddle.width/3)
+		{
+			ball.vx = -ball.force
+			console.log("Inner hit");
+		}
+		//outer left side
+		if(ball.x < paddle.x - paddle.width/6)
+		{
+			ball.vx = -ball.force *5
+			console.log("outter hit left");
+		}
 
-		if(ball.x < paddle.x/3)
+		//outer right side
+		if (ball.x > paddle.x + paddle.width/6)
 		{
-		
-			ball.vy = -35
-			ball.vx = 5
-		}
-		//inner /6
-		if(ball.x < paddle.x/6)
-		{
-		
-			ball.vy = -35
-			ball.vx = 5
-		}
-		//outer /6
-		if (ball.x < paddle.x/6)
-		{
-			
-			ball.vy =  -35
-			ball.vx = 5
+			ball.vx = ball.force*5
+			console.log("outer hit right");
 		}
 		
 	}
