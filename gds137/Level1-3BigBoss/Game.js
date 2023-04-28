@@ -125,26 +125,26 @@ if(ball.hitTestObject(paddle))
 		
 		
 		//inner left
-		if(ball.x < paddle.x - paddle.width/3)
+		if(ball.x < paddle.x - paddle.width/6)
 		{
 			ball.vx = -ball.force
 			console.log("Inner hit");
 		}
 		//inner right
-		if(ball.x > paddle.x + paddle.width/3)
+		if(ball.x > paddle.x + paddle.width/6)
 		{
 			ball.vx = -ball.force
 			console.log("Inner hit");
 		}
 		//outer left side
-		if(ball.x < paddle.x - paddle.width/6)
+		if(ball.x < paddle.x - paddle.width/3)
 		{
 			ball.vx = -ball.force *5
 			console.log("outter hit left");
 		}
 
 		//outer right side
-		if (ball.x > paddle.x + paddle.width/6)
+		if (ball.x > paddle.x + paddle.width/3)
 		{
 			ball.vx = ball.force*5
 			console.log("outer hit right");
@@ -156,7 +156,7 @@ if(ball.hitTestObject(paddle))
 	paddle.drawRect();
 	ball.drawCircle();
 	context.textAlign = "center";
-	context.font = "16px Arial";
+	context.font = " bold 16px Arial";
     context.fontColor = "black";
 	context.fillText("Score: "+score+"", canvas.width - 920, canvas.height - 575);
 
