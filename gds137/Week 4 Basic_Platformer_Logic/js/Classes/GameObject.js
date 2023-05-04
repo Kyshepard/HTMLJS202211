@@ -85,12 +85,19 @@ function GameObject(obj)
 		return {x:this.x - player.width/2 , y:this.y + this.height/2}
 	}
 
+	this.topRight = function()
+	{
+		return {x:this.x + player.width/2, y:this.y - this.height/2}
+	}
+
 	this.hitTestObject = function(obj)
 	{
 		if(this.left().x <= obj.right().x && 
 		   this.right().x >= obj.left().x &&
 		   this.top().y <= obj.bottom().y &&
-		   this.bottom().y >= obj.top().y)
+		   this.bottom().y >= obj.top().y &&
+		   this.topRight().y >= obj.bottomLeft().y &&
+		   this.bottomLeft().y <= obj.topRight().y)
 		{
 			return true
 		}
@@ -103,7 +110,9 @@ function GameObject(obj)
 		if(obj.x >= this.left().x && 
 		   obj.x <= this.right().x &&
 		   obj.y >= this.top().y &&  
-		   obj.y <= this.bottom().y)
+		   obj.y <= this.bottom().y &&
+		   obj.y <= this.bottomLeft().y &&
+		   obj.y >= this.topRight().y)
 		{
 			return true;
 		}

@@ -82,14 +82,8 @@ function animate()
 		player.x--;
 		player.vx = 0;
 	}
-	//while(platform0.hitTestPoint(player.bottomLeft()) && player.vy >=0)
-	//{
-	//	player.vx = 0;
-	//	player.x--;
-	//	player.canJump = true;
-	//}
 	
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
+	while(platform1.hitTestPoint(player.bottom()))
 	{
 		player.y--;
 		player.vy = 0;
@@ -106,7 +100,7 @@ function animate()
 		player.vx = 0;
 	}
 	
-	player.drawDebug();
+	
 
 	//---------Objective: Jump the gap to get the blue pearl----------------------------------------------------------------------------------------------------
 	//---------Call the players drawDebug() function to see where his current hitpoints are
@@ -145,5 +139,7 @@ function animate()
 	player.drawRect();
 	
 	goal.drawCircle();
+
+	player.drawDebug();
 }
 
