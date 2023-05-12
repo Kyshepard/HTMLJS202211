@@ -3,6 +3,10 @@ var a = false;
 var s = false;
 var d = false;
 
+//the buttons for the new mechanics
+var one = false;
+var two = false;
+
 
 document.addEventListener("keydown", press);
 document.addEventListener("keyup", release);
@@ -27,6 +31,17 @@ function press(e)
 	if(e.keyCode == 68)
 	{
 		d = true;
+	}
+
+	if(e.keyCode == 49)
+	{
+		one = true; //for square
+		player.drawDebug();
+	}
+	if(e.keyCode == 50)
+	{
+		two = true;//for circle
+		player.drawDebug();
 	}
 }
 
