@@ -6,6 +6,7 @@ var d = false;
 //the buttons for the new mechanics
 var one = false;
 var two = false;
+var three = false;
 
 
 document.addEventListener("keydown", press);
@@ -43,6 +44,11 @@ function press(e)
 		two = true;//for circle
 		player.drawDebug();
 	}
+	if(e.keyCode == 51)
+	{
+		three = true; //for triangle
+
+	}
 }
 
 function release(e)
@@ -65,5 +71,24 @@ function release(e)
 	if(e.keyCode == 68)
 	{
 		d = false;
+	}
+
+	if(e.keyCode == 49)
+	{
+		one = false; //for square
+		//player.drawDebug();
+		//two = false
+	}
+	if(e.keyCode == 50)
+	{
+		two = false;//for circle
+		//player.drawDebug();
+		//one = false
+	}
+	if(e.keyCode == 51)
+	{
+		three = false; //for triangle
+		
+
 	}
 }

@@ -1,7 +1,7 @@
 function GameObject(obj)
 {	
 		this.x = canvas.width/2;
-		this.y = canvas.height/2;
+		this.y = canvas.height/2+300;
 		this.width = 100;
 		this.height = 100;
 		this.color = "#ff0000";
@@ -44,12 +44,26 @@ function GameObject(obj)
 			context.fillStyle = this.color;
 			context.beginPath();
 			context.translate(this.x, this.y);
-			context.arc(0, 0, this.radius(), 0, 360 *Math.PI/180, true);
+			context.arc(0, 0, this.width/2, 0, 360 *Math.PI/180, true);
 			context.closePath();
 			context.fill();
 		context.restore();
 		
 	}	
+
+	this.drawTriangle = function()
+	{
+		context.save();
+		context.fillStyle = this.color;
+		context.beginPath();
+		context.moveTo(this.x - 50, this.y-50);
+		context.lineTo(this.x -50, this.y + 50);
+		context.lineTo(this.x + 50, this.y)
+		context.closePath();
+		context.fill();
+		context.restore();
+
+	}
 	
 	this.move = function()
 	{

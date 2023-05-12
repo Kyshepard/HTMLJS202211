@@ -6,11 +6,13 @@ var timer;
 var interval;
 var player;
 
+var shape = 1;
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 
 	player = new GameObject({x:100, y:canvas.height/2-100});
+
 
 	platform0 = new GameObject();
 		platform0.width = canvas.width;
@@ -35,6 +37,15 @@ var player;
 	interval = 1000/60;
 	timer = setInterval(animate, interval);
 
+	var state = [
+		function(){player.drawRect()},
+		function(){player.drawCircle()},
+		function(){player.drawTriangle()},
+
+	]
+
+	console.log(state)
+
 function animate()
 {
 	
@@ -54,6 +65,30 @@ function animate()
 	{
 		player.vx += player.ax * player.force;
 	}
+
+	
+	if(one)
+	{
+		player.color = 'purple';
+		shape = 0;
+		player.ax = 1;
+		player.jumpHeight = -25;
+	}
+	if(two)
+	{
+		player.color = 'purple';
+		shape = 1;
+		player.ax = 1;
+		player.jumpHeight = -35;
+	}
+	if(three)
+	{
+		player.color = 'purple';
+		shape = 2;
+		player.ax= 10;
+		player.jumpHeight = -25;
+	}
+	
 
 	player.vx *= fX;
 	player.vy *= fY;
@@ -119,7 +154,7 @@ function animate()
 	//---------Get the pearl to open the door--------------------------------------------------------------------------------------------
 	//---------Hint: you'll need a new variable to keep track of the key-----------------------------------------------------------------
 	
-	if(player.hitTestObject(goal))
+	if(player.hitTestObject(goal) && shape == 0)
 	{
 		goal.y = 10000;
 	}
@@ -138,10 +173,23 @@ function animate()
 	
 	platform0.drawRect();
 	platform1.drawRect();
-	player.drawRect();
+	//player.drawRect();
+	/*if(shape ==1)
+	{
+		
+		player.drawRect()
+	}
+	if(shape == 2)
+	{
+		
+		player.drawCircle()
+	}*/
+
+	state[shape]()
 	
 	//Show hit points
 	player.drawDebug();
 	goal.drawCircle();
+	
 }
 
