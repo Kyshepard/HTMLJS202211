@@ -56,6 +56,24 @@ function GameObject(obj)
 		
 	}	
 	
+	//draws a triangle
+	this.drawTriangle = function()
+	{
+			context.save();
+			context.fillStyle = this.color;
+			context.translate(this.x, this.y);
+			//To convert deg to rad multiply deg * Math.PI/180
+			context.rotate(this.angle * Math.PI/180);
+			context.beginPath();
+				context.moveTo(0+ this.width/2, 0);
+				context.lineTo(0 - this.width/2, 0 - this.height/4);
+				context.lineTo(0 - this.width/2, 0 + this.height/4);
+				context.closePath();
+			context.fill();
+		context.restore();
+		
+	}	
+	
 	this.move = function()
 	{
 		this.x += this.vx;
