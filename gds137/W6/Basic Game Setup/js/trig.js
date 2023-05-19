@@ -44,7 +44,7 @@ function animate()
 	//point(); //- points at the player
 	//follow(); //- follows the player
 	//orbit(); //- orbits the player using physics
-	//revolve(); //- orbits the player without physics.
+	revolve(); //- orbits the player without physics.
 	//sinWave(); //- moves the follower in a sin wave pattern from left to right
 	
 	
@@ -104,10 +104,10 @@ function angularMovement()
 
 function revolve()
 {
-	angle-=5;
+	angle=25;
 	var radians = angle * Math.PI/180;
 	
-	follower.x = player.x + Math.cos(radians) * 200;
+	follower.x = player.x + Math.cos(radians) * 290;
 	follower.y = player.y + Math.sin(radians) * 200;
 }
 	
