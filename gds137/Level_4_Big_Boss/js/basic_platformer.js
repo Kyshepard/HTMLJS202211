@@ -142,10 +142,6 @@ function animate()
 		player.x--;
 		player.vx = 0;
 
-	if(goal.y == 10000)
-	{
-		platform1.y = 10000;
-	}
 	}
 
 	
