@@ -107,7 +107,7 @@ function revolve()
 	angle=25;
 	var radians = angle * Math.PI/180;
 	
-	follower.x = player.x + Math.cos(radians) * 290;
+	follower.x = player.x + Math.cos(radians) * 200;
 	follower.y = player.y + Math.sin(radians) * 200;
 }
 	
