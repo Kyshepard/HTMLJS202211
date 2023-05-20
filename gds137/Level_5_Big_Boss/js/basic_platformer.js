@@ -79,12 +79,12 @@ function animate()
 	
 	context.clearRect(0,0,canvas.width, canvas.height);	
 
+	//buttons that move the player
 	if(w && player.canJump && player.vy ==0)
 	{
 		player.canJump = false;
 		player.vy += player.jumpHeight;
 	}
-
 	if(a)
 	{
 		player.vx += -player.ax * player.force;
@@ -94,7 +94,7 @@ function animate()
 		player.vx += player.ax * player.force;
 	}
 
-	
+	//buttons that change the players shape
 	if(one)
 	{
 		player.color = 'purple';
@@ -118,6 +118,27 @@ function animate()
 		//add a way to change directions
 	}
 	
+	//set the boundaries for the canvas
+	if (player.y > canvas.height - player.height / 2) {
+		player.y = canvas.height - player.height / 2;
+		player.vy = 0;
+	}
+
+	//top boundary
+	if (player.y < player.height / 2) {
+		player.y = player.height / 2;
+		player.vy = 0;
+	}
+	//right boundary
+	if (player.x > canvas.width - player.width / 2) {
+		player.x = canvas.width - player.width / 2;
+		player.vx = 0;
+	}
+	//left boundary
+	if (player.x < player.width / 2) {
+		player.x = player.width / 2;
+		player.vx = 0;
+	}
 	
 
 	player.vx *= fX;
@@ -224,11 +245,18 @@ function animate()
 		goal2.y = 10002;
 		
 	}
-	if(player.hitTestObject(goal3) && shape == 0)
+	if(player.hitTestObject(goal3) && shape == 3)
 	{
 		goal3.y = 10003;
 		
 	}
+
+	//adding colliders to keep the player within the game
+	
+
+
+
+
 	
 	//turns player into star if the collect the first 3 goals
 	if(goal0.y == 10000 && goal1.y == 10001 && goal2.y == 10002)
