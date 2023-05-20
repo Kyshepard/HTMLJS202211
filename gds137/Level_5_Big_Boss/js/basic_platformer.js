@@ -57,6 +57,9 @@ var shape = 1;
 	var fY = .97;
 	
 	var gravity = 1;
+	var frictionX = 1;
+	var frictionY = 1;
+
 
 	interval = 1000/60;
 	timer = setInterval(animate, interval);
@@ -121,6 +124,7 @@ function animate()
 	player.vy *= fY;
 	
 	player.vy += gravity;
+	player.force = 1;
 	
 	player.x += Math.round(player.vx);
 	player.y += Math.round(player.vy);
@@ -230,8 +234,27 @@ function animate()
 	if(goal0.y == 10000 && goal1.y == 10001 && goal2.y == 10002)
 	{
 		shape = 3;
-		player.ax= 3;
 		gravity = 0;
+		frictionX = .5;
+		frictionY = .5;
+
+		if(d)
+		{	
+			player.vx += player.ax * player.force;
+		}
+		if(a)
+		{
+			player.vx += player.ax * -player.force;
+		}
+		if(w)
+		{	
+			player.vy += player.ay * -player.force;
+		}
+		if(s)
+		{
+			player.vy += player.ay * player.force;
+		}
+		
 	}
 	
 	
