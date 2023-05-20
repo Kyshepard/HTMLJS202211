@@ -124,6 +124,7 @@ function animate()
 		player.vy = 0;
 	}
 
+	//adding colliders to keep the player within the game
 	//top boundary
 	if (player.y < player.height / 2) {
 		player.y = player.height / 2;
@@ -239,7 +240,6 @@ function animate()
 	{
 		goal1.y = 10001;
 	}
-	//Turns player into star if touched goal2
 	if(player.hitTestObject(goal2) && shape == 0)
 	{
 		goal2.y = 10002;
@@ -251,7 +251,6 @@ function animate()
 		
 	}
 
-	//adding colliders to keep the player within the game
 	
 
 
