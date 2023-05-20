@@ -44,10 +44,14 @@ var shape = 1;
 	platform3.x = canvas.width - platform2.width/2;
 	platform3.color = "#66ff33";
 	
-	goal = new GameObject({width:24, height:50, x:canvas.width - 80, y:platform0.y-80, color:"#00ffff"});
+	goal0 = new GameObject({width:24, height:50, x:canvas.width - 80, y:platform0.y-80, color:"#00ffff"});
 	//add more goals
-	//goal1 = new GameObject({width:24, height:50, x:canvas.width - 80, y:platform0.y-80, color:"#00ffff"})
-
+	goal1 = new GameObject({width:24, height:50, x:canvas.width - 80, y:platform0.y/2 +50, color:"#00ffff"});
+	//goal 2 gives the power up
+	goal2 = new GameObject({width:24, height:50, x:canvas.width/5 - 150, y:platform0.y/2 - 150, color:"#00ffff"});
+	
+	//goal 3 is the finial one that you need to win
+	goal3 = new GameObject({width:24, height:50, x:canvas.width - 80, y:platform0.y/5 - 100, color:"#00ffff"});
 	var fX = .85;
 	var fY = .97;
 	
@@ -200,10 +204,23 @@ function animate()
 	//--------------------------
 	
 	//after the goals are touched they are moved off the canvas
-	if(player.hitTestObject(goal) && shape == 0)
+	if(player.hitTestObject(goal0) && shape == 0)
 	{
-		goal.y = 10000;
+		goal0.y = 10000;
 	}
+	if(player.hitTestObject(goal1) && shape == 0)
+	{
+		goal1.y = 10001;
+	}
+	if(player.hitTestObject(goal2) && shape == 0)
+	{
+		goal2.y = 10002;
+	}
+	if(player.hitTestObject(goal3) && shape == 0)
+	{
+		goal3.y = 10003;
+	}
+	
 	
 	
 	
@@ -237,7 +254,10 @@ function animate()
 	
 	//Show hit points
 	player.drawDebug();
-	goal.drawCircle();
+	goal0.drawCircle();
+	goal1.drawCircle();
+	goal2.drawCircle();
+	goal3.drawCircle();
 	
 }
 

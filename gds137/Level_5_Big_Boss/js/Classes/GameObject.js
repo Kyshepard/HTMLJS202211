@@ -51,7 +51,7 @@ function GameObject(obj)
 		
 	}	
 
-	this.drawTriangle = function()
+	/*this.drawTriangle = function()
 	{
 		context.save();
 		context.fillStyle = this.color;
@@ -63,6 +63,26 @@ function GameObject(obj)
 		context.fill();
 		context.restore();
 
+	}*/
+
+	this.drawTriangle = function()
+	{
+		context.save();
+		context.fillStyle = this.color;
+		context.beginPath();
+		context.moveTo(this.x, this.y-50);
+		context.lineTo(this.x - 15, this.y -10);
+		context.lineTo(this.x -50, this.y - 10)
+		context.lineTo(this.x - 30, this.y + 15)
+		context.lineTo(this.x- 40, this.y + 50)
+		context.lineTo(this.x, this.y + 25)
+		context.lineTo(this.x + 40, this.y+ 50)
+		context.lineTo(this.x + 30, this.y + 15)
+		context.lineTo(this.x + 50, this.y - 10)
+		context.lineTo(this.x + 15, this.y - 10)
+		context.closePath();
+		context.fill();
+		context.restore();
 	}
 	
 	this.move = function()
