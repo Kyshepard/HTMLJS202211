@@ -153,24 +153,24 @@ function animate()
 	//set the boundaries for the canvas
 	if (player.y > canvas.height - player.height / 2) {
 		player.y = canvas.height - player.height / 2;
-		player.vy = 0;
+		player.vy = -player.vy;
 	}
 
 	//adding colliders to keep the player within the game
 	//top boundary
 	if (player.y < player.height / 2) {
 		player.y = player.height / 2;
-		player.vy = 0;
+		player.vy = -player.vy;
 	}
 	//right boundary
 	if (player.x > canvas.width - player.width / 2) {
 		player.x = canvas.width - player.width / 2;
-		player.vx = 0;
+		player.vx = -player.vx;
 	}
 	//left boundary
 	if (player.x < player.width / 2) {
 		player.x = player.width / 2;
-		player.vx = 0;
+		player.vx = -player.vx;
 	}
 	
 
@@ -234,11 +234,21 @@ function animate()
 		player.vy = 0;
 		player.canJump = true;
 	}
-	//while(platform2.hitTestPoint(player.right()) && player.vx <=0)
-	//{
-		//player.x--;
-		//player.vx = 0;
-	//}
+	while(platform2.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	while(platform2.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform2.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
 	//--------------------------
 	while(platform3.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
