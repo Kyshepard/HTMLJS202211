@@ -6,10 +6,14 @@ var timer;
 var interval;
 var player;
 
+
 var shape = 1;
+
+var sound = document.querySelector("#sound");
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
+	
 
 	player = new GameObject({x:100, y:canvas.height/2+200});
 
@@ -281,10 +285,18 @@ function animate()
 		{
 			player.vy += player.ay * player.force;
 		}
+		sound.play();
+		player.canJump = false;
 		
 	}
-	
-	
+
+	if(goal3.y == 10003)
+	{
+		context.textAlign = "center";
+	context.font = " bold 56px Arial";
+    context.fontColor = "black";
+	context.fillText("YOU WIN!!", canvas.width/2, canvas.height/2);
+	}
 	
 
 
