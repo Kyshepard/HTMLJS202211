@@ -293,10 +293,25 @@ function animate()
 		
 	}
 
-	
-
-
-
+	//player loses if bullet or enemy touches player
+	if(player.hitTestObject(bullet) && shape != 3)
+	{
+		//player.ax = 0
+		context.textAlign = "center";
+	context.font = " bold 56px Arial";
+    context.fontColor = "black";
+	context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
+	return;
+	}
+	if(player.hitTestObject(enemy) && shape != 3)
+	{
+		//player.ax = 0
+		context.textAlign = "center";
+	context.font = " bold 56px Arial";
+    context.fontColor = "black";
+	context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
+	return;
+	}
 
 	
 	//turns player into star if the collect the first 3 goals
@@ -330,7 +345,7 @@ function animate()
 
 	if(goal3.y == 10003)
 	{
-		context.textAlign = "center";
+	context.textAlign = "center";
 	context.font = " bold 56px Arial";
     context.fontColor = "black";
 	context.fillText("YOU WIN!!", canvas.width/2, canvas.height/2 - 100);
