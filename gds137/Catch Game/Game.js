@@ -17,6 +17,13 @@ var gravity = 1;
 var fX = .97;
 var fY = .97;
 
+//for ememy squares and circles
+var gsquares = 0;
+var bcircles = 0;
+var numSquares = 5;
+var numCircles = 5;
+
+
 //Setting up the canvas
 canvas = document.getElementById("canvas");
 context = canvas.getContext("2d");
@@ -40,6 +47,30 @@ paddle.color = `#ffff00`;
 paddle.x = canvas.width/2;
 paddle.y = canvas.height - 25;
 
+//good squares
+gsquares = new GameObject();
+gsquares.width = 50;
+gsquares.height = 50;
+gsquares.color = `blue`;
+gsquares.x = 650;
+gsquares.y = -800;
+gsquares.vx = 0;
+gsquares.vy = 10;
+
+//bad circles
+bcircles = new GameObject();
+bcircles.width = 50;
+bcircles.height = 50;
+bcircles.color = `blue`;
+bcircles.x = 250;
+bcircles.y = -800;
+bcircles.vx = 0;
+bcircles.vy = 10;
+
+function randomRange(high, low) {
+    return Math.random() * (high - low) + low;
+}
+
 //setting the animation timer
 timer = setInterval(animate, interval);
 
@@ -50,7 +81,8 @@ function animate()
 	
 	//Move the ball
 //ball.move();
-
+	gsquares.move();
+	bcircles.move();
 	//Move the paddle left and right
 	if(a)
 	{
@@ -74,6 +106,7 @@ function animate()
 
 	//ball gravity
 	//ball.vy += gravity;
+	//gsquares.vy += gravity;
 
 	//collision for the paddle with walls
 	if(paddle.x < paddle.width/2)
@@ -89,7 +122,6 @@ function animate()
 		paddle.vx = -paddle.vx;
 		
 	}
-
 
 	//----------------------------------------------------------
 	//Collision for the ball 
@@ -154,8 +186,27 @@ if(ball.hitTestObject(paddle))
 		
 	}*/
 
+	//this parts put the squares back
+	if(gsquares.y >= canvas.height + gsquares.height)
+	{
+		bcircles.y = randomRange(-800 - 50, -800 - 5)
+		bcircles.x = randomRange(canvas.width + bcircles.width, -800 + bcircles.width)
+		gsquares.vy = 10;
+	}
+
+	if(bcircles.y >= canvas.height + bcircles.height)
+	{
+		bcircles.y = randomRange(-800 - 50, -800 - 5)
+		bcircles.x = randomRange(canvas.width + bcircles.width, -800 + bcircles.width)
+		bcircles.vy = 10;
+	}
+
+
+
 	//Update the Screen
 	paddle.drawRect();
+	gsquares.drawRect();
+	bcircles.drawCircle();
 	//ball.drawCircle();
 	context.textAlign = "center";
 	context.font = " bold 30px Arial";
