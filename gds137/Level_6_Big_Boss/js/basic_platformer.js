@@ -18,8 +18,8 @@ var sound = document.querySelector("#sound");
 
 	player = new GameObject({x:100, y:canvas.height/2+200});
 	enemy = new GameObject({x:canvas.width/2, y:canvas.height/2});
-	bullet = new GameObject({x:200, y:200, width:25, color:"red"});
-	canvasTrigger = new GameObject({width:canvas.width, height:canvas.height});
+	bullet = new GameObject({x:-200, y:-200, width:25, color:"red"});
+	var canvasTrigger = new GameObject({width:canvas.width, height:canvas.height, y:canvas.height/2 , color:"blue"});
 
 	//platform on the ground
 	platform0 = new GameObject();
@@ -380,6 +380,7 @@ function animate()
 	state[shape]()
 	
 	//Show hit points
+	//canvasTrigger.drawRect();
 	bullet.move();
 	bullet.drawCircle();
 	player.drawDebug();
