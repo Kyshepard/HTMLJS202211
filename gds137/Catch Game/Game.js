@@ -18,26 +18,17 @@ var fX = .97;
 var fY = .97;
 
 //for ememy squares and circles
-var gsquares = 0;
-var bcircles = 0;
-var numSquares = 5;
-var numCircles = 5;
+var amt = 5;
+var gsquares = [];
+var bcircles = [];
 
+console.log(gsquares.length);
+console.log(bcircles.length);
 
 //Setting up the canvas
 canvas = document.getElementById("canvas");
 context = canvas.getContext("2d");
 
-//Instantiate the ball
-/*ball = new GameObject();
-ball.width = 80;
-ball.height = ball.width;
-ball.color = `#ffff00`;
-ball.vx = 5;
-ball.vy = 0;
-ball.x = canvas.width/2
-ball.y = canvas.height - 50
-*/
 
 //Instantiate the paddle
 paddle = new GameObject();
@@ -48,24 +39,29 @@ paddle.x = canvas.width/2;
 paddle.y = canvas.height - 25;
 
 //good squares
-gsquares = new GameObject();
-gsquares.width = 50;
-gsquares.height = 50;
-gsquares.color = `blue`;
-gsquares.x = 650;
-gsquares.y = -800;
-gsquares.vx = 0;
-gsquares.vy = 10;
+for(var i = 0; i < amt; i++)
+{
+gsquares[i] = new GameObject();
+gsquares[i].width = 50;
+gsquares[i].height = 50;
+gsquares[i].color = `blue`;
+gsquares[i].x = Math.random() * canvas.width;
+gsquares[i].y = Math.random() * canvas.width;
+gsquares[i].vx = 0;
+gsquares[i].vy = 10;
+
+bcircles[i] = new GameObject();
+bcircles[i].width = 50;
+bcircles[i].height = 50;
+bcircles[i].color = `orange`;
+bcircles[i].x = Math.random() * canvas.width;
+bcircles[i].y = Math.random() * canvas.width;
+bcircles[i].vx = 0;
+bcircles[i].vy = 10;
+}
 
 //bad circles
-bcircles = new GameObject();
-bcircles.width = 50;
-bcircles.height = 50;
-bcircles.color = `blue`;
-bcircles.x = 250;
-bcircles.y = -800;
-bcircles.vx = 0;
-bcircles.vy = 10;
+
 
 function randomRange(high, low) {
     return Math.random() * (high - low) + low;
@@ -81,8 +77,18 @@ function animate()
 	
 	//Move the ball
 //ball.move();
-	gsquares.move();
-	bcircles.move();
+
+	for(var i = 0; i < amt; i++)
+	{
+		gsquares[i].move();
+		bcircles[i].move();
+		gsquares[i].drawRect();
+		bcircles[i].drawCircle();
+
+	
+	}
+	
+	//bcircles.move();
 	//Move the paddle left and right
 	if(a)
 	{
@@ -123,91 +129,27 @@ function animate()
 		
 	}
 
-	//----------------------------------------------------------
-	//Collision for the ball 
-/*if(ball.x < canvas.width/2 - 500 + ball.width/2)
-{
-	ball.x = ball.width/2;
-	ball.vx = -ball.vy * .67;
-}
-if(ball.x > canvas.width - ball.width/2)
-{
-	ball.x = canvas.width - ball.width/2;
-	ball.vx = -ball.vy * .67;
-}
-
-if(ball.y < ball.width/2)
-{
-	ball.y = ball.width/2
-	ball.vy = -ball.vy/ .67;
-}
-
-if(ball.y > canvas.height - ball.width/2)
-{
-	ball.y = canvas.height -ball.width/2
-	ball.vy = -ball.vy * .67;
-	score = 0;
-}
-
-//collisions for ball hiting paddle
-if(ball.hitTestObject(paddle))
-	{
-		ball.y = paddle.y - paddle.height/2 - ball.height/2
-		ball.vy = -35;
-		score = score + 1;
-		console.log("center hit")
-		
-		
-		//inner left
-		if(ball.x < paddle.x - paddle.width/6)
-		{
-			ball.vx = -ball.force
-			console.log("Inner hit");
-		}
-		//inner right
-		if(ball.x > paddle.x + paddle.width/6)
-		{
-			ball.vx = -ball.force
-			console.log("Inner hit");
-		}
-		//outer left side
-		if(ball.x < paddle.x - paddle.width/3)
-		{
-			ball.vx = -ball.force *5
-			console.log("outter hit left");
-		}
-
-		//outer right side
-		if (ball.x > paddle.x + paddle.width/3)
-		{
-			ball.vx = ball.force*5
-			console.log("outer hit right");
-		}
-		
-	}*/
 
 	//this parts put the squares back
-	if(gsquares.y >= canvas.height + gsquares.height)
+	
+	if(gsquares[i].y >= canvas.height + gsquares[i].height)
 	{
-		bcircles.y = randomRange(-800 - 50, -800 - 5)
-		bcircles.x = randomRange(canvas.width + bcircles.width, -800 + bcircles.width)
-		gsquares.vy = 10;
+		bcircles[i].y = Math.random() * canvas.height;
+		bcircles[i].x = Math.random() * canvas.width;
+		//gsquares.vy = 10;
 	}
 
-	if(bcircles.y >= canvas.height + bcircles.height)
+	if(bcircles[i].y >= canvas.height + bcircles[i].height)
 	{
-		bcircles.y = randomRange(-800 - 50, -800 - 5)
-		bcircles.x = randomRange(canvas.width + bcircles.width, -800 + bcircles.width)
-		bcircles.vy = 10;
+		bcircles[i].y = Math.random() * canvas.height;
+		bcircles[i].x = Math.random() * canvas.width;
+		//bcircles.vy = 10;
 	}
-
+	
 
 
 	//Update the Screen
-	paddle.drawRect();
-	gsquares.drawRect();
-	bcircles.drawCircle();
-	//ball.drawCircle();
+	paddle.drawRect();	
 	context.textAlign = "center";
 	context.font = " bold 30px Arial";
     context.fontColor = "black";
