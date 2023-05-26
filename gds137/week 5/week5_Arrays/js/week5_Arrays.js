@@ -39,7 +39,7 @@ function animate()
 	{
 		dots[i].drawCircle();
 		//dots[i].vy += gravity;
-		//dots[i].move();
+		dots[i].move();
 	}
 }
 
