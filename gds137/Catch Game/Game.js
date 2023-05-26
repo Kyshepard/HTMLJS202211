@@ -71,15 +71,15 @@ function animate()
 
 	for(var i = 0; i < amt; i++)
 	{
-	gsquares[i].move();
-	bcircles[i].move();
+		gsquares[i].move();
+		bcircles[i].move();
 	
 		if(gsquares[i].y >= canvas.height + 50)
 		{
-		gsquares[i].y = canvas.height - 1000;
-		gsquares[i].x = Math.random() * canvas.width;
-		gsquares[i].vy = randomRange(7, 12);
-		gsquares[i].vx = 0;
+			gsquares[i].y = canvas.height - 1000;
+			gsquares[i].x = Math.random() * canvas.width;
+			gsquares[i].vy = randomRange(7, 12);
+			gsquares[i].vx = 0;
 		}
 
 		if(bcircles[i].y >= canvas.height + 50)
@@ -88,42 +88,45 @@ function animate()
 			bcircles[i].x = Math.random() * canvas.width;
 			bcircles[i].vy = randomRange(7,12);
 			bcircles[i].vx = 0;
-			}
-				for( var r = 0; r < amt; r++)
-				{
-				if(paddle.hitTestObject(bcircles[r]))
-				{
-					clearTimeout(waiting);
-					bcircles[r].y = canvas.height - 1000;
-					bcircles[r].x = Math.random() * canvas.width;
-					bcircles[r].vy = randomRange(7,12);
-					bcircles[r].vx = 0;
-
-					gsquares[r].y = canvas.height - 1000;
-					gsquares[r].x = Math.random() * canvas.width;
-					gsquares[r].vy = randomRange(7, 12);
-					gsquares[r].vx = 0;
-
-					paddle.color = "red";
-					score = 0;
-					setTimeout(waiting, 500);
-				}
-				if(paddle.hitTestObject(gsquares[r]))
-				{
-					
-					clearTimeout(points);
-					gsquares[r].y = canvas.height - 1000;
-					gsquares[r].x = Math.random() * canvas.width;
-					gsquares[r].vy = randomRange(7, 12);
-					gsquares[r].vx = 0;
-					paddle.color = "green";
-					setTimeout(points, 500);
-				}
+		}
+		
+		if(paddle.hitTestObject(bcircles[i]))
+		{
+			clearTimeout(waiting);
+				paddle.color = "red";
+				score = 0;
+				setTimeout(waiting, 500);
+			for( var r = 0; r < amt; r++)
+			{
 				
-				gsquares[i].drawRect();
-				bcircles[i].drawCircle();
+				bcircles[r].y = canvas.height - 1000;
+				bcircles[r].x = Math.random() * canvas.width;
+				bcircles[r].vy = randomRange(7,12);
+				bcircles[r].vx = 0;
+
+				gsquares[r].y = canvas.height - 1000;
+				gsquares[r].x = Math.random() * canvas.width;
+				gsquares[r].vy = randomRange(7, 12);
+				gsquares[r].vx = 0;
 			}
-	}
+				
+			
+		}
+		if(paddle.hitTestObject(gsquares[i]))
+		{
+			clearTimeout(points);
+			paddle.color = "green";
+			gsquares[i].y = canvas.height - 1000;
+			gsquares[i].x = Math.random() * canvas.width;
+			gsquares[i].vy = randomRange(7, 12);
+			gsquares[i].vx = 0;
+			setTimeout(points, 500);	
+		}
+				
+			gsquares[i].drawRect();
+			bcircles[i].drawCircle();
+	}	
+
 	//Move the paddle left and right
 	if(a)
 	{
