@@ -32,7 +32,7 @@ paddle.width = 50;
 paddle.height = 50;
 paddle.color = `#ffff00`;
 paddle.x = canvas.width/2;
-paddle.y = canvas.height - 25;
+paddle.y = canvas.height - 50;
 
 //good squares
 for(var i = 0; i < amt; i++)
@@ -84,39 +84,45 @@ function animate()
 
 		if(bcircles[i].y >= canvas.height + 50)
 		{
-		bcircles[i].y = canvas.height - 1000;
-		bcircles[i].x = Math.random() * canvas.width;
-		bcircles[i].vy = randomRange(7,12);
-		bcircles[i].vx = 0;
-		 }
-		
-		 if(paddle.hitTestObject(bcircles[i]))
-		 {
-			clearTimeout(waiting);
 			bcircles[i].y = canvas.height - 1000;
 			bcircles[i].x = Math.random() * canvas.width;
 			bcircles[i].vy = randomRange(7,12);
 			bcircles[i].vx = 0;
-			 paddle.color = "red";
-			 score = 0;
-			 setTimeout(waiting, 500);
-			 
-		 }
-		 if(paddle.hitTestObject(gsquares[i]))
-		 {
-			
-			clearTimeout(points);
-			gsquares[i].y = canvas.height - 1000;
-			gsquares[i].x = Math.random() * canvas.width;
-			gsquares[i].vy = randomRange(7, 12);
-			gsquares[i].vx = 0;
-			paddle.color = "green";
-			setTimeout(points, 500);
-			
-		 }
+			}
+				for( var r = 0; r < amt; r++)
+				{
+				if(paddle.hitTestObject(bcircles[r]))
+				{
+					clearTimeout(waiting);
+					bcircles[r].y = canvas.height - 1000;
+					bcircles[r].x = Math.random() * canvas.width;
+					bcircles[r].vy = randomRange(7,12);
+					bcircles[r].vx = 0;
 
-		gsquares[i].drawRect();
-		bcircles[i].drawCircle();
+					gsquares[r].y = canvas.height - 1000;
+					gsquares[r].x = Math.random() * canvas.width;
+					gsquares[r].vy = randomRange(7, 12);
+					gsquares[r].vx = 0;
+
+					paddle.color = "red";
+					score = 0;
+					setTimeout(waiting, 500);
+				}
+				if(paddle.hitTestObject(gsquares[r]))
+				{
+					
+					clearTimeout(points);
+					gsquares[r].y = canvas.height - 1000;
+					gsquares[r].x = Math.random() * canvas.width;
+					gsquares[r].vy = randomRange(7, 12);
+					gsquares[r].vx = 0;
+					paddle.color = "green";
+					setTimeout(points, 500);
+				}
+				
+				gsquares[i].drawRect();
+				bcircles[i].drawCircle();
+			}
 	}
 	//Move the paddle left and right
 	if(a)
