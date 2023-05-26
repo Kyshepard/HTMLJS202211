@@ -8,9 +8,13 @@ var player;
 //var enemy;
 
 
-var shape = 1;
+	var shape = 1;
 
-var sound = document.querySelector("#sound");
+	var sound = document.querySelector("#sound");
+
+	//functions tell what game state we are in and calls them
+	var currentState = 0;
+	var gameStates  = [];
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
@@ -87,309 +91,379 @@ function animate()
 	
 	context.clearRect(0,0,canvas.width, canvas.height);	
 
-	var dx = player.x - enemy.x;
-	var dy = player.y - enemy.y;
-	
-	var dist = Math.sqrt(dx * dx + dy * dy);
-	
-	var radians = Math.atan2(dy, dx);
-	
-	enemy.angle = radians * 180/Math.PI
-
-	if(bullet.hitTestObject(canvasTrigger) == false)
+	gameStates[currentState]();
+}
+	gameStates[0] = function()
 	{
-	 bullet.x = enemy.x;
-	 bullet.y = enemy.y;
-	}
-	if(bullet.x == enemy.x && bullet.y == enemy.y)
-	{
-		bullet.vx = Math.cos(enemy.angle * Math.PI/180) * 5;
-		bullet.vy = Math.sin(enemy.angle * Math.PI/180) * 5;
-	}
-	
-
-	//buttons that move the player
-	if(w && player.canJump && player.vy ==0)
-	{
-		player.canJump = false;
-		player.vy += player.jumpHeight;
-	}
-	if(a)
-	{
-		player.vx += -player.ax * player.force;
-	}
-	if(d)
-	{
-		player.vx += player.ax * player.force;
-	}
-
-	//buttons that change the players shape
-	if(one)
-	{
-		player.color = 'purple';
-		shape = 0;
-		player.ax = 1;
-		player.jumpHeight = -25;
-	}
-	if(two)
-	{
-		player.color = 'purple';
-		shape = 1;
-		player.ax = 1;
-		player.jumpHeight = -31;
-	}
-	if(three)
-	{
-		player.color = 'purple';
-		shape = 2;
-		player.ax= 5;
-		player.jumpHeight = -25;
-		//add a way to change directions
-	}
-
-	
-
-
-	//set the boundaries for the canvas
-	if (player.y > canvas.height - player.height / 2) {
-		player.y = canvas.height - player.height / 2;
-		player.vy = -player.vy;
-	}
-
-	//adding colliders to keep the player within the game
-	//top boundary
-	if (player.y < player.height / 2) {
-		player.y = player.height / 2;
-		player.vy = -player.vy;
-	}
-	//right boundary
-	if (player.x > canvas.width - player.width / 2) {
-		player.x = canvas.width - player.width / 2;
-		player.vx = -player.vx;
-	}
-	//left boundary
-	if (player.x < player.width / 2) {
-		player.x = player.width / 2;
-		player.vx = -player.vx;
-	}
-	
-
-	player.vx *= fX;
-	player.vy *= fY;
-	
-	player.vy += gravity;
-	player.force = 1;
-	
-	player.x += Math.round(player.vx);
-	player.y += Math.round(player.vy);
-	
-
-	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
-	while(platform0.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform0.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	while(platform0.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
-	//----------------------------------
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
-	while(platform1.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	while(platform1.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
-	//--------------------------
-	while(platform2.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
-	while(platform2.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
-	while(platform2.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform2.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	//--------------------------
-	while(platform3.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
-	while(platform3.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform3.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	while(platform3.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
-	//--------------------------
-	
-	//after the goals are touched they are moved off the canvas
-	if(player.hitTestObject(goal0) && shape == 0)
-	{
-		goal0.y = 10000;
-	}
-	if(player.hitTestObject(goal1) && shape == 0)
-	{
-		goal1.y = 10001;
-	}
-	if(player.hitTestObject(goal2) && shape == 0)
-	{
-		goal2.y = 10002;
 		
-	}
-	if(player.hitTestObject(goal3) && shape == 3)
-	{
-		goal3.y = 10003;
+		var dx = player.x - enemy.x;
+		var dy = player.y - enemy.y;
 		
-	}
+		var dist = Math.sqrt(dx * dx + dy * dy);
+		
+		var radians = Math.atan2(dy, dx);
+		
+		enemy.angle = radians * 180/Math.PI
 
-	//player loses if bullet or enemy touches player
-	if(player.hitTestObject(bullet) && shape != 3)
-	{
-		//player.ax = 0
-		context.textAlign = "center";
-	context.font = " bold 56px Arial";
-    context.fontColor = "black";
-	context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
-	return;
-	}
-	if(player.hitTestObject(enemy) && shape != 3)
-	{
-		//player.ax = 0
-		context.textAlign = "center";
-	context.font = " bold 56px Arial";
-    context.fontColor = "black";
-	context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
-	return;
-	}
+		if(bullet.hitTestObject(canvasTrigger) == false)
+		{
+		bullet.x = enemy.x;
+		bullet.y = enemy.y;
+		}
+		if(bullet.x == enemy.x && bullet.y == enemy.y)
+		{
+			bullet.vx = Math.cos(enemy.angle * Math.PI/180) * 5;
+			bullet.vy = Math.sin(enemy.angle * Math.PI/180) * 5;
+		}
+		
 
-	
-	//turns player into star if the collect the first 3 goals
-	if(goal0.y == 10000 && goal1.y == 10001 && goal2.y == 10002)
-	{
-		shape = 3;
-		gravity = 0;
-		frictionX = .5;
-		frictionY = .5;
-
-		if(d)
-		{	
-			player.vx += player.ax * player.force;
+		//buttons that move the player
+		if(w && player.canJump && player.vy ==0)
+		{
+			player.canJump = false;
+			player.vy += player.jumpHeight;
 		}
 		if(a)
 		{
-			player.vx += player.ax * -player.force;
+			player.vx += -player.ax * player.force;
 		}
-		if(w)
-		{	
-			player.vy += player.ay * -player.force;
-		}
-		if(s)
+		if(d)
 		{
-			player.vy += player.ay * player.force;
+			player.vx += player.ax * player.force;
 		}
-		sound.play();
-		player.canJump = false;
+
+		//buttons that change the players shape
+		if(one)
+		{
+			player.color = 'pink';
+			shape = 0;
+			player.ax = 1;
+			player.jumpHeight = -25;
+		}
+		if(two)
+		{
+			player.color = 'blue';
+			shape = 1;
+			player.ax = 1;
+			player.jumpHeight = -31;
+		}
+		if(three)
+		{
+			player.color = 'purple';
+			shape = 2;
+			player.ax= 5;
+			player.jumpHeight = -25;
+			//add a way to change directions
+		}
+
 		
+
+
+		//set the boundaries for the canvas
+		if (player.y > canvas.height - player.height / 2) {
+			player.y = canvas.height - player.height / 2;
+			player.vy = -player.vy;
+		}
+
+		//adding colliders to keep the player within the game
+		//top boundary
+		if (player.y < player.height / 2) {
+			player.y = player.height / 2;
+			player.vy = -player.vy;
+		}
+		//right boundary
+		if (player.x > canvas.width - player.width / 2) {
+			player.x = canvas.width - player.width / 2;
+			player.vx = -player.vx;
+		}
+		//left boundary
+		if (player.x < player.width / 2) {
+			player.x = player.width / 2;
+			player.vx = -player.vx;
+		}
+		
+
+		player.vx *= fX;
+		player.vy *= fY;
+		
+		player.vy += gravity;
+		player.force = 1;
+		
+		player.x += Math.round(player.vx);
+		player.y += Math.round(player.vy);
+		
+
+		while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+		while(platform0.hitTestPoint(player.left()) && player.vx <=0)
+		{
+			player.x++;
+			player.vx = 0;
+		}
+		while(platform0.hitTestPoint(player.right()) && player.vx >=0)
+		{
+			player.x--;
+			player.vx = 0;
+		}
+		while(platform0.hitTestPoint(player.top()) && player.vy <=0)
+		{
+			player.y++;
+			player.vy = 0;
+		}
+		//----------------------------------
+		while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+		while(platform1.hitTestPoint(player.left()) && player.vx <=0)
+		{
+			player.x++;
+			player.vx = 0;
+		}
+		while(platform1.hitTestPoint(player.right()) && player.vx >=0)
+		{
+			player.x--;
+			player.vx = 0;
+		}
+		while(platform1.hitTestPoint(player.top()) && player.vy <=0)
+		{
+			player.y++;
+			player.vy = 0;
+		}
+		//--------------------------
+		while(platform2.hitTestPoint(player.bottom()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+		while(platform2.hitTestPoint(player.top()) && player.vy <=0)
+		{
+			player.y++;
+			player.vy = 0;
+		}
+		while(platform2.hitTestPoint(player.left()) && player.vx <=0)
+		{
+			player.x++;
+			player.vx = 0;
+		}
+		while(platform2.hitTestPoint(player.right()) && player.vx >=0)
+		{
+			player.x--;
+			player.vx = 0;
+		}
+		//--------------------------
+		while(platform3.hitTestPoint(player.bottom()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+		while(platform3.hitTestPoint(player.left()) && player.vx <=0)
+		{
+			player.x++;
+			player.vx = 0;
+		}
+		while(platform3.hitTestPoint(player.right()) && player.vx >=0)
+		{
+			player.x--;
+			player.vx = 0;
+		}
+		while(platform3.hitTestPoint(player.top()) && player.vy <=0)
+		{
+			player.y++;
+			player.vy = 0;
+		}
+		//--------------------------
+		
+		//after the goals are touched they are moved off the canvas
+		if(player.hitTestObject(goal0) && shape == 0)
+		{
+			goal0.y = 10000;
+		}
+		if(player.hitTestObject(goal1) && shape == 0)
+		{
+			goal1.y = 10001;
+		}
+		if(player.hitTestObject(goal2) && shape == 0)
+		{
+			goal2.y = 10002;
+			
+		}
+		if(player.hitTestObject(goal3) && shape == 3)
+		{
+			goal3.y = 10003;
+			
+		}
+
+		//player loses if bullet or enemy touches player
+		if(player.hitTestObject(bullet) && shape != 3)
+		{
+			currentState = 2;
+			//player.ax = 0
+		// context.textAlign = "center";
+		// context.font = " bold 56px Arial";
+		// context.fontColor = "black";
+		// context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
+		// return;
+		}
+		if(player.hitTestObject(enemy) && shape != 3)
+		{
+			currentState = 2;
+			//player.ax = 0
+		// 	context.textAlign = "center";
+		// context.font = " bold 56px Arial";
+		// context.fontColor = "black";
+		// context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
+		// return;
+		 }
+
+		
+		//turns player into star if the collect the first 3 goals
+		if(goal0.y == 10000 && goal1.y == 10001 && goal2.y == 10002)
+		{
+			shape = 3;
+			player.color = "gold";
+			gravity = 0;
+			frictionX = .5;
+			frictionY = .5;
+
+			if(d)
+			{	
+				player.vx += player.ax * player.force;
+			}
+			if(a)
+			{
+				player.vx += player.ax * -player.force;
+			}
+			if(w)
+			{	
+				player.vy += player.ay * -player.force;
+			}
+			if(s)
+			{
+				player.vy += player.ay * player.force;
+			}
+			sound.play();
+			player.canJump = false;
+			
+		}
+
+		if(goal3.y == 10003)
+		{
+			currentState = 1;
+		// context.textAlign = "center";
+		// context.font = " bold 56px Arial";
+		// context.fontColor = "black";
+		// context.fillText("YOU WIN!!", canvas.width/2, canvas.height/2 - 100);
+		}
+		
+
+
+
+		
+
+		
+		
+		
+		
+		
+		platform0.drawRect();
+		platform1.drawRect();
+		platform2.drawRect();
+		platform3.drawRect();
+		//player.drawRect();
+		/*if(shape == 1)
+		{
+			
+			player.drawRect()
+		}
+		if(shape == 2)
+		{
+			
+			player.drawCircle()
+		}*/
+
+		state[shape]()
+		
+		//Show hit points
+		//canvasTrigger.drawRect();
+		bullet.move();
+		bullet.drawCircle();
+		player.drawDebug();
+		goal0.drawCircle();
+		goal1.drawCircle();
+		goal2.drawCircle();
+		goal3.drawCircle();
+		enemy.drawEnemy();
 	}
 
-	if(goal3.y == 10003)
+gameStates[1] = function()// the win screen
 	{
-	context.textAlign = "center";
-	context.font = " bold 56px Arial";
-    context.fontColor = "black";
-	context.fillText("YOU WIN!!", canvas.width/2, canvas.height/2 - 100);
+	
+	
+		canvas.clearRect;
+		context.textAlign = "center";
+		context.font = " bold 56px Arial";
+		context.fontColor = "black";
+		context.fillText("YOU WIN!!", canvas.width/2, canvas.height/2 - 100);
+		context.fillText("Press the Space Bar to Restart", canvas.width/2, canvas.height/2);
+		if (space == true)
+		{
+			currentState = 0;
+			location.reload();
+		}
 	}
-	
-
-
-
-	
-
-	
-	
-	
-	
-	
-	platform0.drawRect();
-	platform1.drawRect();
-	platform2.drawRect();
-	platform3.drawRect();
-	//player.drawRect();
-	/*if(shape == 1)
+gameStates[2] = function() //the lose screen
 	{
-		
-		player.drawRect()
+		canvas.clearRect;
+		context.textAlign = "center";
+		context.font = " bold 56px Arial";
+		context.fontColor = "black";
+		context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
+		context.fillText("Press the Space Bar to Restart", canvas.width/2, canvas.height/2);
+		if (space == true)
+		{
+			currentState = 0;
+			location.reload();
+		}
+		return;
 	}
-	if(shape == 2)
+
+/*gameStates[3] = function() //the start screen
 	{
-		
-		player.drawCircle()
-	}*/
+		canvas.clearRect;
+		context.textAlign = "center";
+		context.font = " bold 56px Arial";
+		context.fontColor = "black";
+		context.fillText("Press the Space Bar to Start!!", canvas.width/2, canvas.height/2 - 100);	
+		if (space == true)
+		{
+			currentState = 0;
+		}
+		return;
+	}
+*/
 
-	state[shape]()
-	
-	//Show hit points
-	//canvasTrigger.drawRect();
-	bullet.move();
-	bullet.drawCircle();
-	player.drawDebug();
-	goal0.drawCircle();
-	goal1.drawCircle();
-	goal2.drawCircle();
-	goal3.drawCircle();
-
-	enemy.drawEnemy();
-	
+/*function BeginGame()
+{
+	currentState = 3
+}*/
+function theGame()
+{
+	currentState = 0;
 }
-
+function youWin()
+{
+	currentState = 1
+}
+function youLose()
+{
+	currentState = 2
+}

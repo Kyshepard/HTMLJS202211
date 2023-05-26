@@ -51,6 +51,7 @@ var players =[
 //This state moves the avatars right		
 states[0] = function()
 {
+	
 
 	for(var i = 0; i < players.length; i++)
 	{

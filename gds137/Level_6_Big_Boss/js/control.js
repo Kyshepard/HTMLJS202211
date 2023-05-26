@@ -8,6 +8,8 @@ var one = false;
 var two = false;
 var three = false;
 
+//to start the game and restart the game
+var space = false;
 
 document.addEventListener("keydown", press);
 document.addEventListener("keyup", release);
@@ -49,6 +51,10 @@ function press(e)
 		three = true; //for triangle
 
 	}
+	if(e.keyCode == 32)
+	{
+		space = true;
+	}
 }
 
 function release(e)
@@ -88,7 +94,10 @@ function release(e)
 	if(e.keyCode == 51)
 	{
 		three = false; //for triangle
-		
 
+	}
+	if(e.keyCode == 32)
+	{
+		space = false;
 	}
 }
