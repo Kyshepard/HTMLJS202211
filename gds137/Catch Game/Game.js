@@ -44,7 +44,7 @@ gsquares[i].color = `blue`;
 gsquares[i].x = Math.random() * canvas.width;
 gsquares[i].y = Math.random() * canvas.height - 1000;
 gsquares[i].vx = 0;
-gsquares[i].vy = 10;
+gsquares[i].vy = randomRange(7, 12);
 
 bcircles[i] = new GameObject();
 bcircles[i].width = 50;
@@ -53,7 +53,7 @@ bcircles[i].color = `orange`;
 bcircles[i].x = Math.random() * canvas.width;
 bcircles[i].y = Math.random() * canvas.height - 1000;
 bcircles[i].vx = 0;
-bcircles[i].vy = 10;	
+bcircles[i].vy = randomRange(7, 12);	
 }
 
 function randomRange(high, low) {
@@ -78,7 +78,7 @@ function animate()
 		{
 		gsquares[i].y = canvas.height - 1000;
 		gsquares[i].x = Math.random() * canvas.width;
-		gsquares[i].vy = 10;
+		gsquares[i].vy = randomRange(7, 12);
 		gsquares[i].vx = 0;
 		}
 
@@ -86,11 +86,34 @@ function animate()
 		{
 		bcircles[i].y = canvas.height - 1000;
 		bcircles[i].x = Math.random() * canvas.width;
-		bcircles[i].vy = 10;
+		bcircles[i].vy = randomRange(7,12);
 		bcircles[i].vx = 0;
 		 }
 		
-		
+		 if(paddle.hitTestObject(bcircles[i]))
+		 {
+			clearTimeout(waiting);
+			bcircles[i].y = canvas.height - 1000;
+			bcircles[i].x = Math.random() * canvas.width;
+			bcircles[i].vy = randomRange(7,12);
+			bcircles[i].vx = 0;
+			 paddle.color = "red";
+			 score = 0;
+			 setTimeout(waiting, 500);
+			 
+		 }
+		 if(paddle.hitTestObject(gsquares[i]))
+		 {
+			
+			clearTimeout(points);
+			gsquares[i].y = canvas.height - 1000;
+			gsquares[i].x = Math.random() * canvas.width;
+			gsquares[i].vy = randomRange(7, 12);
+			gsquares[i].vx = 0;
+			paddle.color = "green";
+			setTimeout(points, 500);
+			
+		 }
 
 		gsquares[i].drawRect();
 		bcircles[i].drawCircle();
@@ -132,10 +155,23 @@ function animate()
 		
 	}
 
+
+	
+
 	//Update the Screen
 	paddle.drawRect();	
 	context.textAlign = "center";
 	context.font = " bold 30px Arial";
     context.fontColor = "black";
 	context.fillText("Score: "+score+"", canvas.width - 700, canvas.height -760);
+}
+
+function waiting()
+{
+	paddle.color = "yellow";
+}
+function points()
+{
+	score = score + 1;
+	paddle.color = "yellow";
 }
