@@ -298,31 +298,34 @@ function animate()
 		}
 		if(player.hitTestObject(goal3) && shape == 3)
 		{
-			goal3.y = 10003;
-			
+			goal3.y = 10003;	
 		}
 
 		//player loses if bullet or enemy touches player
 		if(player.hitTestObject(bullet) && shape != 3)
 		{
 			currentState = 2;
-			//player.ax = 0
-		// context.textAlign = "center";
-		// context.font = " bold 56px Arial";
-		// context.fontColor = "black";
-		// context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
-		// return;
 		}
 		if(player.hitTestObject(enemy) && shape != 3)
 		{
 			currentState = 2;
-			//player.ax = 0
-		// 	context.textAlign = "center";
-		// context.font = " bold 56px Arial";
-		// context.fontColor = "black";
-		// context.fillText("YOU LOSE!!", canvas.width/2, canvas.height/2 - 100);
-		// return;
-		 }
+		}
+
+		//makes the platform disapear after play touches it, with delay
+		if(player.hitTestObject(platform2))
+		{
+			clearTimeout(disappear2);
+			setTimeout(disappear2, 1500);
+			clearTimeout(comeBack2)
+			setTimeout(comeBack2, 4500)
+		}
+		if(player.hitTestObject(platform1))
+		{
+			clearTimeout(disappear1);
+			setTimeout(disappear1, 1500);
+			clearTimeout(comeBack1)
+			setTimeout(comeBack1, 4500)
+		}
 
 		
 		//turns player into star if the collect the first 3 goals
@@ -466,4 +469,23 @@ function youWin()
 function youLose()
 {
 	currentState = 2
+}
+
+//disapearing platforms function timer
+function disappear2()
+{
+	platform2.y = 1000;
+}
+function comeBack2()
+{
+	platform2.y = canvas.height/2 + 120;
+}
+
+function disappear1()
+{
+	platform1.y = 1001;
+}
+function comeBack1()
+{
+	platform1.y = canvas.height/2 + 30;
 }
