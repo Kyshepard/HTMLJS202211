@@ -322,7 +322,7 @@ function animate()
 		if(player.hitTestObject(platform1))
 		{
 			clearTimeout(disappear1);
-			setTimeout(disappear1, 1500);
+			setTimeout(disappear1, 500);
 			clearTimeout(comeBack1)
 			setTimeout(comeBack1, 4500)
 		}
