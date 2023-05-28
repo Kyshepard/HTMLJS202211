@@ -22,7 +22,7 @@ var player;
 
 	player = new GameObject({x:100, y:canvas.height/2+200});
 	enemy = new GameObject({x:canvas.width/2, y:canvas.height/2});
-	bullet = new GameObject({x:-200, y:-200, width:25, color:"red"});
+	bullet = new GameObject({x:-200, y:-200, width:25, height:25, color:"red"});
 	var canvasTrigger = new GameObject({width:canvas.width, height:canvas.height, y:canvas.height/2 , color:"blue"});
 
 	//platform on the ground
